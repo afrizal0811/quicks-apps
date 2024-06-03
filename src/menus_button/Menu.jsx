@@ -1,4 +1,3 @@
-import { ConfigProvider } from 'antd'
 import { motion } from 'framer-motion'
 import React, { useState } from 'react'
 import PopupMenu from '../components/popup_menu/PopupMenu'
@@ -9,7 +8,7 @@ import {
   StyledMenuContainer,
   StyledMenuContent,
 } from './StyledComponents'
-import { compConfig, menuData } from './help'
+import { menuData } from './help'
 
 const Menu = (props) => {
   const { isClicked, setIsClicked } = props
@@ -21,38 +20,35 @@ const Menu = (props) => {
   }
 
   const renderBackButton = (
-    <ConfigProvider theme={compConfig(colors.darkLiver)}>
-      <StyledBackButton
-        shape='circle'
-        onClick={handleClickBack}
-      />
-    </ConfigProvider>
+    <StyledBackButton
+      color={colors.darkLiver}
+      onClick={handleClickBack}
+    />
   )
 
-  const renderMenus = menuData.map((element, key) => {
+  const renderMenus = menuData.map((element) => {
     const { content, colorActive, colorIdle, imageActive, imageIdle, name } =
       element
     const selectedColor = isOpen[`${name}`] ? colorActive : colorIdle
+    const renderContent = (
+      <img
+        src={isOpen[`${name}`] ? imageActive : imageIdle}
+        width='auto'
+        height='auto'
+        alt='logo'
+      />
+    )
     return (
-      <ConfigProvider theme={compConfig(selectedColor)}>
-        <StyledMenuContent>
-          {isOpen[`${name}`] && renderBackButton}
-          <PopupMenu content={content}>
-            <StyledMenuButton
-              key={key}
-              shape='circle'
-              onClick={() => setIsOpen({ [name]: true })}
-            >
-              <img
-                src={isOpen[`${name}`] ? imageActive : imageIdle}
-                width='auto'
-                height='auto'
-                alt='logo'
-              />
-            </StyledMenuButton>
-          </PopupMenu>
-        </StyledMenuContent>
-      </ConfigProvider>
+      <StyledMenuContent>
+        {isOpen[`${name}`] && renderBackButton}
+        <PopupMenu content={content}>
+          <StyledMenuButton
+            color={selectedColor}
+            content={renderContent}
+            onClick={() => setIsOpen({ [name]: true })}
+          />
+        </PopupMenu>
+      </StyledMenuContent>
     )
   })
 

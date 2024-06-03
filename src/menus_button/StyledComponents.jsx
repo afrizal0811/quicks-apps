@@ -1,5 +1,5 @@
-import { Button } from 'antd'
 import styled from 'styled-components'
+import CircleButton from '../components/circle_button/CircleButton'
 
 export const StyledContainer = styled.div`
   display: flex;
@@ -19,13 +19,13 @@ export const StyledMenuContent = styled.div`
   position: relative;
 `
 
-export const StyledQuicksButton = styled(Button)`
+export const StyledMainButton = styled(CircleButton)`
   height: 68px;
   width: 68px;
   margin-left: 10px;
 `
 
-export const StyledMenuButton = styled(Button)`
+export const StyledMenuButton = styled(CircleButton)`
   height: 60px;
   width: 60px;
   margin: 0 15px;

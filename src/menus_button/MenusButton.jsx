@@ -1,11 +1,8 @@
-import { ConfigProvider } from 'antd'
 import React, { useState } from 'react'
 import { colors } from '../constants/colors'
 import { imagePaths } from '../constants/imagePaths'
 import Menu from './Menu'
-import { StyledContainer, StyledQuicksButton } from './StyledComponents'
-import { compConfig } from './help'
-
+import { StyledContainer, StyledMainButton } from './StyledComponents'
 const MenuButton = () => {
   const [isClicked, setIsClicked] = useState(false)
 
@@ -24,14 +21,11 @@ const MenuButton = () => {
         isClicked={isClicked}
         setIsClicked={setIsClicked}
       />
-      <ConfigProvider theme={compConfig(colors.bleuDeFrance)}>
-        <StyledQuicksButton
-          shape='circle'
-          onClick={() => setIsClicked(true)}
-        >
-          {quicksIcon}
-        </StyledQuicksButton>
-      </ConfigProvider>
+      <StyledMainButton
+        color={colors.bleuDeFrance}
+        onClick={() => setIsClicked(true)}
+        content={quicksIcon}
+      />
     </StyledContainer>
   )
 }

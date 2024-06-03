@@ -5,4 +5,5 @@ export const colors = {
   darkLiver: '#4F4F4F',
   mellowApricot: '#F8B76B',
   violetsAreBlue: '#8785FF',
+  white: '#FFFFFF',
 }
