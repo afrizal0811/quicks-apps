@@ -2,7 +2,7 @@ import { ConfigProvider } from 'antd'
 import { motion } from 'framer-motion'
 import React, { useState } from 'react'
 import { colors } from '../../constants/colors'
-import MenuTab from '../menu_tab/MenuTab'
+import PopupMenu from '../popup_menu/PopupMenu'
 import {
   StyledBackButton,
   StyledMenuButton,
@@ -36,7 +36,7 @@ const Menu = (props) => {
   )
 
   const renderMenus = menuData.map((element, key) => {
-    const { colorActive, colorIdle, imageActive, imageIdle, name } = element
+    const { content, colorActive, colorIdle, imageActive, imageIdle, name } = element
     return (
       <ConfigProvider
         theme={{
@@ -47,7 +47,7 @@ const Menu = (props) => {
       >
         <StyledMenuContent>
           {isOpen[`${name}`] && renderBackButton}
-          <MenuTab>
+          <PopupMenu content={content}>
             <StyledMenuButton
               key={key}
               shape='circle'
@@ -60,7 +60,7 @@ const Menu = (props) => {
                 alt='logo'
               />
             </StyledMenuButton>
-          </MenuTab>
+          </PopupMenu>
         </StyledMenuContent>
       </ConfigProvider>
     )

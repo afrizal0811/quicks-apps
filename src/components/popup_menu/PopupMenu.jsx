@@ -1,12 +1,11 @@
 import { Popover } from 'antd'
 import React from 'react'
-
-const MenuTab = (props) => {
-  const { children } = props
+const PopupMenu = (props) => {
+  const { children, content } = props
 
   return (
     <Popover
-      content='content'
+      content={content}
       placement='topRight'
       title='title'
       trigger='click'
@@ -16,4 +15,4 @@ const MenuTab = (props) => {
   )
 }
 
-export default MenuTab
+export default PopupMenu
