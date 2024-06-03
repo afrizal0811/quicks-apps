@@ -21,11 +21,21 @@ export const StyledQuicksButton = styled(Button)`
   margin-left: 10px;
 `
 
+export const StyledTabsContainer = styled.div`
+  position: relative;
+`
+
 export const StyledMenuButton = styled(Button)`
   height: 60px;
   width: 60px;
-  margin: 0 10px;
+  margin: 0 15px;
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 100;
+`
+
+export const StyledBackButton = styled(StyledMenuButton)`
+  right: 10px;
+  position: absolute;
 `

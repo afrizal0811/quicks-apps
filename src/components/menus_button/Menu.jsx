@@ -1,31 +1,78 @@
 import { ConfigProvider } from 'antd'
-import React from 'react'
-import { StyledMenuButton, StyledMenuContainer } from './StyledComponents'
+import { motion } from 'framer-motion'
+import React, { useState } from 'react'
+import { colors } from '../../constants/colors'
+import MenuTab from '../menu_tab/MenuTab'
+import {
+  StyledBackButton,
+  StyledMenuButton,
+  StyledMenuContainer,
+  StyledTabsContainer,
+} from './StyledComponents'
+import { menuData } from './help'
 
 const Menu = (props) => {
-  const { menuIcon } = props
-  const renderMenus = menuIcon.map((element) => {
+  const { isClicked, setIsClicked } = props
+  const [isOpen, setIsOpen] = useState({})
+
+  const handleClickBack = () => {
+    setIsClicked(false)
+    setIsOpen({})
+  }
+
+  const renderBackButton = (
+    <ConfigProvider
+      theme={{
+        token: {
+          colorBgContainer: colors.darkLiver,
+        },
+      }}
+    >
+      <StyledBackButton
+        shape='circle'
+        onClick={handleClickBack}
+      />
+    </ConfigProvider>
+  )
+
+  const renderMenus = menuData.map((element, key) => {
+    const { colorActive, colorIdle, imageActive, imageIdle, name } = element
     return (
       <ConfigProvider
         theme={{
           token: {
-            colorBgContainer: '#F2F2F2',
+            colorBgContainer: isOpen[`${name}`] ? colorActive : colorIdle,
           },
         }}
       >
-        <StyledMenuButton shape='circle'>
-          <img
-            src={element}
-            width='auto'
-            height='auto'
-            alt='logo'
-          />
-        </StyledMenuButton>
+        <StyledTabsContainer>
+          {isOpen[`${name}`] && renderBackButton}
+          <MenuTab>
+            <StyledMenuButton
+              key={key}
+              shape='circle'
+              onClick={() => setIsOpen({ [name]: true })}
+            >
+              <img
+                src={isOpen[`${name}`] ? imageActive : imageIdle}
+                width='auto'
+                height='auto'
+                alt='logo'
+              />
+            </StyledMenuButton>
+          </MenuTab>
+        </StyledTabsContainer>
       </ConfigProvider>
     )
   })
 
-  return <StyledMenuContainer>{renderMenus}</StyledMenuContainer>
+  return (
+    <motion.div
+      animate={{ x: isClicked ? 0 : 330, opacity: isClicked ? 1 : 0 }}
+    >
+      <StyledMenuContainer>{renderMenus}</StyledMenuContainer>
+    </motion.div>
+  )
 }
 
 export default Menu

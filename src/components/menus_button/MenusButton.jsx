@@ -1,49 +1,43 @@
 import { ConfigProvider } from 'antd'
 import React, { useState } from 'react'
-import { imagePath } from '../../constants/imagePath'
+import { colors } from '../../constants/colors'
+import { imagePaths } from '../../constants/imagePaths'
 import Menu from './Menu'
 import { StyledContainer, StyledQuicksButton } from './StyledComponents'
+
 const MenuButton = () => {
   const [isClicked, setIsClicked] = useState(false)
-  const menuIcon = [imagePath.taskIcon, imagePath.inboxIcon]
+
   const quicksIcon = (
     <img
-      src={imagePath.menuIcon}
+      src={imagePaths.menuIcon}
       width='auto'
       height='auto'
       alt='logo'
     />
   )
 
-  const handleClick = () => {
-    setIsClicked((prev) => !prev)
-  }
-
-  const renderButtonMenu = (
-    <ConfigProvider
-      theme={{
-        token: {
-          colorBgContainer: '#2f80ed',
-        },
-      }}
-    >
-      <StyledQuicksButton
-        shape='circle'
-        onClick={handleClick}
-      >
-        {quicksIcon}
-      </StyledQuicksButton>
-    </ConfigProvider>
-  )
-
-  const renderMenu = isClicked && <Menu menuIcon={menuIcon} />
   return (
-    <div>
-      <StyledContainer>
-        {renderMenu}
-        {renderButtonMenu}
-      </StyledContainer>
-    </div>
+    <StyledContainer>
+      <Menu
+        isClicked={isClicked}
+        setIsClicked={setIsClicked}
+      />
+      <ConfigProvider
+        theme={{
+          token: {
+            colorBgContainer: colors.bleuDeFrance,
+          },
+        }}
+      >
+        <StyledQuicksButton
+          shape='circle'
+          onClick={() => setIsClicked(true)}
+        >
+          {quicksIcon}
+        </StyledQuicksButton>
+      </ConfigProvider>
+    </StyledContainer>
   )
 }
 
