@@ -1,7 +1,7 @@
-import { colors } from '../../constants/colors'
-import { imagePaths } from '../../constants/imagePaths'
-import MessageTab from '../../tabs/message_tab/MessageTab'
-import TaskTab from '../../tabs/task_tab/TaskTab'
+import { colors } from '../constants/colors'
+import { imagePaths } from '../constants/imagePaths'
+import MessageTab from '../tabs/message_tab/MessageTab'
+import TaskTab from '../tabs/task_tab/TaskTab'
 
 export const menuData = [
   {

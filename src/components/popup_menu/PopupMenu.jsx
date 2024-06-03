@@ -7,7 +7,6 @@ const PopupMenu = (props) => {
     <Popover
       content={content}
       placement='topRight'
-      title='title'
       trigger='click'
     >
       {children}

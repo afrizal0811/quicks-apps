@@ -1,8 +1,8 @@
 import { ConfigProvider } from 'antd'
 import { motion } from 'framer-motion'
 import React, { useState } from 'react'
-import { colors } from '../../constants/colors'
-import PopupMenu from '../popup_menu/PopupMenu'
+import PopupMenu from '../components/popup_menu/PopupMenu'
+import { colors } from '../constants/colors'
 import {
   StyledBackButton,
   StyledMenuButton,
@@ -36,7 +36,8 @@ const Menu = (props) => {
   )
 
   const renderMenus = menuData.map((element, key) => {
-    const { content, colorActive, colorIdle, imageActive, imageIdle, name } = element
+    const { content, colorActive, colorIdle, imageActive, imageIdle, name } =
+      element
     return (
       <ConfigProvider
         theme={{

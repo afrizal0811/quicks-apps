@@ -1,5 +1,5 @@
 import './App.css'
-import MenusButton from './components/menus_button/MenusButton'
+import MenusButton from './menus_button/MenusButton'
 
 function App() {
   return (

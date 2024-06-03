@@ -1,7 +1,7 @@
 import { ConfigProvider } from 'antd'
 import React, { useState } from 'react'
-import { colors } from '../../constants/colors'
-import { imagePaths } from '../../constants/imagePaths'
+import { colors } from '../constants/colors'
+import { imagePaths } from '../constants/imagePaths'
 import Menu from './Menu'
 import { StyledContainer, StyledQuicksButton } from './StyledComponents'
 
