@@ -15,14 +15,14 @@ export const StyledMenuContainer = styled.div`
   flex-direction: row;
 `
 
+export const StyledMenuContent = styled.div`
+  position: relative;
+`
+
 export const StyledQuicksButton = styled(Button)`
   height: 68px;
   width: 68px;
   margin-left: 10px;
-`
-
-export const StyledTabsContainer = styled.div`
-  position: relative;
 `
 
 export const StyledMenuButton = styled(Button)`

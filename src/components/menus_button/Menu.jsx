@@ -7,7 +7,7 @@ import {
   StyledBackButton,
   StyledMenuButton,
   StyledMenuContainer,
-  StyledTabsContainer,
+  StyledMenuContent,
 } from './StyledComponents'
 import { menuData } from './help'
 
@@ -45,7 +45,7 @@ const Menu = (props) => {
           },
         }}
       >
-        <StyledTabsContainer>
+        <StyledMenuContent>
           {isOpen[`${name}`] && renderBackButton}
           <MenuTab>
             <StyledMenuButton
@@ -61,7 +61,7 @@ const Menu = (props) => {
               />
             </StyledMenuButton>
           </MenuTab>
-        </StyledTabsContainer>
+        </StyledMenuContent>
       </ConfigProvider>
     )
   })
