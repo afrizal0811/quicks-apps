@@ -9,7 +9,7 @@ import {
   StyledMenuContainer,
   StyledMenuContent,
 } from './StyledComponents'
-import { menuData } from './help'
+import { compConfig, menuData } from './help'
 
 const Menu = (props) => {
   const { isClicked, setIsClicked } = props
@@ -21,13 +21,7 @@ const Menu = (props) => {
   }
 
   const renderBackButton = (
-    <ConfigProvider
-      theme={{
-        token: {
-          colorBgContainer: colors.darkLiver,
-        },
-      }}
-    >
+    <ConfigProvider theme={compConfig(colors.darkLiver)}>
       <StyledBackButton
         shape='circle'
         onClick={handleClickBack}
@@ -38,14 +32,9 @@ const Menu = (props) => {
   const renderMenus = menuData.map((element, key) => {
     const { content, colorActive, colorIdle, imageActive, imageIdle, name } =
       element
+    const selectedColor = isOpen[`${name}`] ? colorActive : colorIdle
     return (
-      <ConfigProvider
-        theme={{
-          token: {
-            colorBgContainer: isOpen[`${name}`] ? colorActive : colorIdle,
-          },
-        }}
-      >
+      <ConfigProvider theme={compConfig(selectedColor)}>
         <StyledMenuContent>
           {isOpen[`${name}`] && renderBackButton}
           <PopupMenu content={content}>

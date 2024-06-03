@@ -4,6 +4,7 @@ import { colors } from '../constants/colors'
 import { imagePaths } from '../constants/imagePaths'
 import Menu from './Menu'
 import { StyledContainer, StyledQuicksButton } from './StyledComponents'
+import { compConfig } from './help'
 
 const MenuButton = () => {
   const [isClicked, setIsClicked] = useState(false)
@@ -23,13 +24,7 @@ const MenuButton = () => {
         isClicked={isClicked}
         setIsClicked={setIsClicked}
       />
-      <ConfigProvider
-        theme={{
-          token: {
-            colorBgContainer: colors.bleuDeFrance,
-          },
-        }}
-      >
+      <ConfigProvider theme={compConfig(colors.bleuDeFrance)}>
         <StyledQuicksButton
           shape='circle'
           onClick={() => setIsClicked(true)}

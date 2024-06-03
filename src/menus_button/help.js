@@ -3,6 +3,17 @@ import { imagePaths } from '../constants/imagePaths'
 import MessageTab from '../tabs/message_tab/MessageTab'
 import TaskTab from '../tabs/task_tab/TaskTab'
 
+export const compConfig = (color) => {
+  return {
+    components: {
+      Button: {
+        defaultBg: color,
+        defaultHoverBg: color,
+      },
+    },
+  }
+}
+
 export const menuData = [
   {
     content: <TaskTab />,
