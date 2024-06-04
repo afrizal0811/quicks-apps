@@ -1,8 +1,11 @@
 import React from 'react'
-
+import SearchBar from '../../components/search_bar/SearchBar'
+import { StyledTabContainer } from './StyledComponents'
 const MessageTab = () => {
   return (
-    <div>MessageTab</div>
+    <StyledTabContainer>
+      <SearchBar />
+    </StyledTabContainer>
   )
 }
 

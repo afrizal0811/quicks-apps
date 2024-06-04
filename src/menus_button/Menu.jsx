@@ -23,6 +23,7 @@ const Menu = (props) => {
     <StyledBackButton
       color={colors.darkLiver}
       onClick={handleClickBack}
+      shape='circle'
     />
   )
 
@@ -46,6 +47,7 @@ const Menu = (props) => {
             color={selectedColor}
             content={renderContent}
             onClick={() => setIsOpen({ [name]: true })}
+            shape='circle'
           />
         </PopupMenu>
       </StyledMenuContent>

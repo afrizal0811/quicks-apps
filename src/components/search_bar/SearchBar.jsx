@@ -11,7 +11,7 @@ const SearchBar = () => {
         placeholder='input search text'
         allowClear
         style={{
-          width: 200,
+          width: '100%',
         }}
       />
     </ConfigProvider>

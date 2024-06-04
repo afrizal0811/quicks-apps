@@ -2,16 +2,17 @@ import { Button, ConfigProvider } from 'antd'
 import React from 'react'
 import { compConfig } from '../../utilities/compConfig'
 
-const CircleButton = (props) => {
-  const { color, onClick, content, style, className } = props
+const AntdButton = (props) => {
+  const { color, onClick, content, style, shape, className, type } = props
 
   return (
     <ConfigProvider theme={compConfig(color)}>
       <Button
         className={className}
-        shape='circle'
         onClick={onClick}
+        shape={shape}
         style={style}
+        type={type}
       >
         {content}
       </Button>
@@ -19,4 +20,4 @@ const CircleButton = (props) => {
   )
 }
 
-export default CircleButton
+export default AntdButton

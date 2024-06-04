@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import CircleButton from '../components/circle_button/CircleButton'
+import AntdButton from '../components/button/AntdButton'
 
 export const StyledContainer = styled.div`
   display: flex;
@@ -19,13 +19,13 @@ export const StyledMenuContent = styled.div`
   position: relative;
 `
 
-export const StyledMainButton = styled(CircleButton)`
+export const StyledMainButton = styled(AntdButton)`
   height: 68px;
   width: 68px;
   margin-left: 10px;
 `
 
-export const StyledMenuButton = styled(CircleButton)`
+export const StyledMenuButton = styled(AntdButton)`
   height: 60px;
   width: 60px;
   margin: 0 15px;

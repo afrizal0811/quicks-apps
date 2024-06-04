@@ -23,8 +23,9 @@ const MenuButton = () => {
       />
       <StyledMainButton
         color={colors.bleuDeFrance}
-        onClick={() => setIsClicked(true)}
         content={quicksIcon}
+        onClick={() => setIsClicked(true)}
+        shape='circle'
       />
     </StyledContainer>
   )
