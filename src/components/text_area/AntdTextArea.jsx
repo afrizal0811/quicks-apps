@@ -2,25 +2,32 @@ import { Input } from 'antd'
 import React from 'react'
 import { StyledContainer, StyledIcon } from './StyledComponents'
 
-const AntdTextArea = () => {
+const AntdTextArea = (props) => {
+  const { placeholder, needIcon, width, className, disabled, id } = props
   const { TextArea } = Input
 
   const handleClick = () => {
-    document.getElementById('area').focus()
+    document.getElementById(id).focus()
   }
+  const renderIcon = needIcon && (
+    <a
+      href={() => false}
+      onClick={handleClick}
+    >
+      <StyledIcon />
+    </a>
+  )
 
   return (
     <StyledContainer>
-      <a
-        href={() => false}
-        onClick={handleClick}
-      >
-        <StyledIcon />
-      </a>
+      {renderIcon}
       <TextArea
         autoSize={{ minRows: 1 }}
-        id='area'
-        style={{ width: '645px' }}
+        className={className}
+        disabled={disabled}
+        id={id}
+        placeholder={placeholder}
+        style={{ width: width }}
       />
     </StyledContainer>
   )

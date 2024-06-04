@@ -1,20 +1,25 @@
-import { DownOutlined } from '@ant-design/icons'
 import { Button, Dropdown } from 'antd'
 import React from 'react'
-import { items } from './help'
 
-const AntdDropdown = () => {
+const AntdDropdown = (props) => {
+  const { text, items, icon, isButton, trigger, onClick, placement } = props
+  const buttonComp = (
+    <Button>
+      {text}
+      {icon}
+    </Button>
+  )
+  const renderComponents = isButton ? buttonComp : icon
   return (
     <Dropdown
       menu={{
         items,
+        onClick,
       }}
-      placement='bottom'
+      placement={placement}
+      trigger={trigger}
     >
-      <Button>
-        My Task
-        <DownOutlined />
-      </Button>
+      {renderComponents}
     </Dropdown>
   )
 }

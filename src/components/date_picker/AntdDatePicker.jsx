@@ -2,19 +2,23 @@ import { DatePicker } from 'antd'
 import React, { useState } from 'react'
 import { StyledContainer, StyledIcon } from './StyledComponents'
 
-const AntdDatePicker = () => {
+const AntdDatePicker = (props) => {
+  const { setDate } = props
   const [isSelected, setIsSelected] = useState(false)
 
-  const onChange = (dateString) => {
-    if (dateString) setIsSelected(true)
-    else setIsSelected(false)
+  const onChange = (date, dateString) => {
+    if (dateString) {
+      setDate(dateString)
+      setIsSelected(true)
+    } else setIsSelected(false)
   }
+
   return (
     <StyledContainer>
       <StyledIcon isSelected={isSelected} />
       <DatePicker
         format={{
-          format: 'DD-MM-YYYY',
+          format: 'DD/MM/YYYY',
           type: 'mask',
         }}
         placement='bottomRight'
