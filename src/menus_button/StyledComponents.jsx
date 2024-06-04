@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import AntdButton from '../components/button/AntdButton'
+import { colors } from '../constants/colors'
 
 export const StyledContainer = styled.div`
   display: flex;
@@ -17,18 +18,28 @@ export const StyledMenuContainer = styled.div`
 
 export const StyledMenuContent = styled.div`
   position: relative;
+  flex-direction: column;
+`
+
+export const StyledWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: ${colors.antiFlashWhite};
 `
 
 export const StyledMainButton = styled(AntdButton)`
   height: 68px;
   width: 68px;
-  margin-left: 10px;
+  margin-left: 5px;
 `
 
 export const StyledMenuButton = styled(AntdButton)`
   height: 60px;
   width: 60px;
-  margin: 0 15px;
+  margin: 0 10px;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -10,7 +10,7 @@ export const menuData = [
     colorIdle: colors.antiFlashWhite,
     imageActive: imagePaths.taskActiveIcon,
     imageIdle: imagePaths.taskIcon,
-    name: 'task',
+    name: 'Task',
   },
   {
     content: <MessageTab />,
@@ -18,6 +18,10 @@ export const menuData = [
     colorIdle: colors.antiFlashWhite,
     imageActive: imagePaths.inboxActiveIcon,
     imageIdle: imagePaths.inboxIcon,
-    name: 'inbox',
+    name: 'Inbox',
   },
 ]
+
+export const isEmpty = (obj) => {
+  return Object.keys(obj).length === 0 && obj.constructor === Object
+}
