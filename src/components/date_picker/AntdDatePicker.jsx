@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { StyledContainer, StyledIcon } from './StyledComponents'
 
 const AntdDatePicker = (props) => {
-  const { setDate } = props
+  const { setDate, disabled } = props
   const [isSelected, setIsSelected] = useState(false)
 
   const onChange = (date, dateString) => {
@@ -23,6 +23,7 @@ const AntdDatePicker = (props) => {
         }}
         placement='bottomRight'
         onChange={onChange}
+        disabled={disabled}
       />
     </StyledContainer>
   )

@@ -9,10 +9,7 @@ const TaskTab = () => {
   const [tasks, setTasks] = useState([])
   
   const handleClick = () => {
-    const newTask = {
-      id: Date.now(),
-    }
-    setTasks((prev) => [...prev, newTask])
+    setTasks((prev) => [...prev, Date.now()])
   }
 
   return (
@@ -33,11 +30,7 @@ const TaskTab = () => {
         />
       </StyledHeader>
       {tasks.map((data) => (
-        <AddTask
-          {...data}
-          tasks={tasks}
-          setTasks={setTasks}
-        />
+        <AddTask id={data} />
       ))}
     </StyledContainer>
   )

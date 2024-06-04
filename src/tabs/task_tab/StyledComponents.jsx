@@ -11,13 +11,13 @@ export const StyledContainer = styled.div`
 export const StyledHeader = styled.div`
   display: flex;
   justify-content: space-between;
+  padding-bottom: 22px;
 `
 
 export const StyledInfoContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 22px 0;
 `
 
 export const StyledDate = styled.div`
@@ -31,10 +31,9 @@ export const StyledInputContainer = styled.div`
   padding: 0 25px;
   gap: 10px;
   ${({ isCollapsed }) =>
-    !isCollapsed &&
-    `
-     display: none;
-  `};
+    !isCollapsed
+      ? ` display: none; visibility:hidden; `
+      : `padding-top: 22px;`};
 `
 
 export const StyledLink = styled.a`

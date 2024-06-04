@@ -16,27 +16,23 @@ import {
 import { daysLeft, deleteItem } from './help'
 
 const AddTask = (props) => {
-  const { tasks, setTasks, id } = props
+  const { id } = props
   const [isCollapsed, setIsCollapsed] = useState(true)
   const [isDeleted, setIsDeleted] = useState(false)
+  const [isChecked, setIsChecked] = useState(false)
   const [date, setDate] = useState('')
 
-  const renderCollapseIcon = isCollapsed ? <UpOutlined /> : <DownOutlined />
-  const days = daysLeft(date) ? `${daysLeft(date)} Days Left` : ''
-
   const handleDelete = () => {
-    tasks.forEach((task) => {
-      if (task.id === id) {
-        setIsDeleted(true)
-        setTasks((prev) => prev.filter((data) => data.id !== id))
-      }
-    })
+    setIsDeleted(true)
   }
+
+  const renderCollapseIcon = isCollapsed ? <UpOutlined /> : <DownOutlined />
+  const days = daysLeft(date) && !isChecked ? `${daysLeft(date)} Days Left` : ''
+
   return (
     <StyledDiv isDeleted={isDeleted}>
-      {id}
       <StyledInfoContainer>
-        <AntdCheckbox />
+        <AntdCheckbox setIsChecked={setIsChecked} />
         <StyledDate>
           <AntdTypography
             text={days}
@@ -62,9 +58,13 @@ const AddTask = (props) => {
         </StyledDate>
       </StyledInfoContainer>
       <StyledInputContainer isCollapsed={isCollapsed}>
-        <AntdDatePicker setDate={setDate} />
+        <AntdDatePicker
+          disabled={isChecked}
+          setDate={setDate}
+        />
         <AntdTextArea
           id={id}
+          disabled={isChecked}
           needIcon={true}
           placeholder='No Description'
           width='645px'
