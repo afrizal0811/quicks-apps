@@ -3,6 +3,7 @@ import AntdAvatar from '../../components/avatar/AntdAvatar'
 import AntdAvatarGroup from '../../components/avatar/AntdAvatarGroup'
 import AntdDivider from '../../components/divider/AntdDivider'
 import Image from '../../components/image/Image'
+import AntdTypography from '../../components/typography/AntdTypography'
 import { colors } from '../../constants/colors'
 import { imagePaths } from '../../constants/imagePaths'
 import {
@@ -11,6 +12,8 @@ import {
   StyledList,
   StyledListWrapper,
   StyledNameChat,
+  StyledNotifContent,
+  StyledNotifWrapper,
   StyledPreviewChat,
   StyledTitle,
   StyledWrapper,
@@ -18,7 +21,7 @@ import {
 import { avatarGroupData } from './help'
 
 const List = (props) => {
-  const { item, index } = props
+  const { item, index, setIsSelected } = props
   const fullName = item.owner.firstName + ' ' + item.owner.lastName
   const userIcon = (
     <Image
@@ -44,9 +47,15 @@ const List = (props) => {
     />
   )
 
+  const notification = index % 2 > 0 && (
+    <StyledNotifWrapper>
+      <StyledNotifContent />
+    </StyledNotifWrapper>
+  )
+
   const renderAvatar = index < 5 ? AvatarGroup : AvatarSingle
   return (
-    <StyledListWrapper>
+    <StyledListWrapper onClick={() => setIsSelected(true)}>
       <StyledList>
         <StyledAvatarWrapper>{renderAvatar}</StyledAvatarWrapper>
         <StyledChatWrapper>
@@ -57,7 +66,13 @@ const List = (props) => {
               <StyledPreviewChat text={item.text} />
             </StyledWrapper>
           </StyledWrapper>
-          12/12/12
+          <StyledWrapper>
+            <AntdTypography
+              text='05/06/2024 17:02'
+              type='secondary'
+            />
+            {notification}
+          </StyledWrapper>
         </StyledChatWrapper>
       </StyledList>
       <AntdDivider />

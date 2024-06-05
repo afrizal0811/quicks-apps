@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, Fragment } from 'react'
 import SearchBar from '../../components/search_bar/AntdSearchBar'
 import AntdSpin from '../../components/spin/AntdSpin'
 import { getApi } from '../../utilities/handleApi'
+import Detail from './Detail'
 import List from './List'
 import { StyledContainer, StyledContent } from './StyledComponents'
 const MessageTab = () => {
   const [data, setData] = useState([])
   const [isLoading, setIsLoading] = useState(true)
+  const [isSelected, setIsSelected] = useState(false)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,20 +21,23 @@ const MessageTab = () => {
     fetchData()
   }, [])
 
-  const renderLists = data.map((item, key) => {
-    return (
-      <List
-        item={item}
-        key={key}
-        index={key}
-      />
-    )
-  })
-  
-  const renderContent = isLoading ? <AntdSpin /> : renderLists
+  const renderLists = (
+    <Fragment>
+      <SearchBar />
+      {data.map((item, key) => (
+        <List
+          index={key}
+          item={item}
+          setIsSelected={setIsSelected}
+        />
+      ))}
+    </Fragment>
+  )
+
+  const renderSection = isSelected ? <Detail /> : renderLists
+  const renderContent = isLoading ? <AntdSpin /> : renderSection
   return (
     <StyledContainer>
-      <SearchBar />
       <StyledContent isLoading={isLoading}>{renderContent}</StyledContent>
     </StyledContainer>
   )
