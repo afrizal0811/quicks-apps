@@ -1,5 +1,5 @@
-import React, { useEffect, useState, Fragment } from 'react'
-import SearchBar from '../../components/search_bar/AntdSearchBar'
+import React, { useEffect, useState } from 'react'
+import AntdInput from '../../components/input/AntdInput'
 import AntdSpin from '../../components/spin/AntdSpin'
 import { getApi } from '../../utilities/handleApi'
 import Detail from './Detail'
@@ -22,8 +22,8 @@ const MessageTab = () => {
   }, [])
 
   const renderLists = (
-    <Fragment>
-      <SearchBar />
+    <div>
+      <AntdInput />
       {data.map((item, key) => (
         <List
           index={key}
@@ -31,7 +31,7 @@ const MessageTab = () => {
           setIsSelected={setIsSelected}
         />
       ))}
-    </Fragment>
+    </div>
   )
 
   const renderSection = isSelected ? <Detail /> : renderLists

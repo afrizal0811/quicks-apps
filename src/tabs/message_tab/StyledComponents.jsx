@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import AntdTypography from '../../components/typography/AntdTypography'
 import { colors } from '../../constants/colors'
-import { Fragment } from 'react'
+
 export const StyledContainer = styled.div`
   padding: 12px 20px;
   width: 734px;
@@ -65,14 +65,14 @@ export const StyledPreviewChat = styled(StyledNameChat)`
   font-weight: 500;
 `
 
-export const StyledNotifWrapper = styled(Fragment)`
+export const StyledNotifWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
   height: 100%;
 `
 
-export const StyledNotifContent = styled(Fragment)`
+export const StyledNotifContent = styled.div`
   height: 10px;
   width: 10px;
   background-color: ${colors.fireOpal};
