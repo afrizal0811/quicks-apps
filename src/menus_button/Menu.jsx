@@ -1,10 +1,11 @@
 import { motion } from 'framer-motion'
 import React, { useState } from 'react'
 import Image from '../components/image/Image'
-import PopupMenu from '../components/popup_menu/PopupMenu'
 import { colors } from '../constants/colors'
+import Tabs from '../tabs/Tabs'
 import {
   StyledBackButton,
+  StyledDiv,
   StyledMenuButton,
   StyledMenuContainer,
   StyledMenuContent,
@@ -15,6 +16,7 @@ import { isEmpty, menuData } from './help'
 const Menu = (props) => {
   const { isClicked, setIsClicked } = props
   const [isOpen, setIsOpen] = useState({})
+  const [selectedMenu, setSelectedMenu] = useState('')
 
   const isOpenEmpty = isEmpty(isOpen)
 
@@ -22,7 +24,10 @@ const Menu = (props) => {
     setIsClicked(false)
     setIsOpen({})
   }
-
+  const handleClickMenu = (name) => {
+    setSelectedMenu(name)
+    setIsOpen({ [name]: true })
+  }
   const renderBackButton = (
     <StyledBackButton
       color={colors.darkLiver}
@@ -31,9 +36,8 @@ const Menu = (props) => {
     />
   )
 
-  const renderMenus = menuData.map((element) => {
-    const { content, colorActive, colorIdle, imageActive, imageIdle, name } =
-      element
+  const renderMenus = menuData.map((element, key) => {
+    const { colorActive, colorIdle, imageActive, imageIdle, name } = element
 
     const selectedColor = isOpen[`${name}`] ? colorActive : colorIdle
     const renderContent = (
@@ -49,14 +53,12 @@ const Menu = (props) => {
         {isOpenEmpty && name}
         <StyledMenuContent>
           {isOpen[`${name}`] && renderBackButton}
-          <PopupMenu content={content}>
-            <StyledMenuButton
-              color={selectedColor}
-              content={renderContent}
-              onClick={() => setIsOpen({ [name]: true })}
-              shape='circle'
-            />
-          </PopupMenu>
+          <StyledMenuButton
+            color={selectedColor}
+            content={renderContent}
+            onClick={() => handleClickMenu(name)}
+            shape='circle'
+          />
         </StyledMenuContent>
       </StyledWrapper>
     )
@@ -64,7 +66,10 @@ const Menu = (props) => {
 
   return (
     <motion.div animate={{ x: isClicked ? 85 : 350, scale: isClicked ? 1 : 0 }}>
-      <StyledMenuContainer>{renderMenus}</StyledMenuContainer>
+      <StyledDiv>
+        {isOpen[`${selectedMenu}`] && <Tabs selectedMenu={selectedMenu} />}
+        <StyledMenuContainer>{renderMenus}</StyledMenuContainer>
+      </StyledDiv>
     </motion.div>
   )
 }

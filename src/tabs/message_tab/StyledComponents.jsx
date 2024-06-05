@@ -3,7 +3,7 @@ import AntdTypography from '../../components/typography/AntdTypography'
 import { colors } from '../../constants/colors'
 
 export const StyledContainer = styled.div`
-  padding: 12px 20px;
+  padding: 24px 32px;
   width: 734px;
   height: 500px;
   overflow-y: auto;

@@ -30,6 +30,14 @@ export const StyledWrapper = styled.div`
   color: ${colors.antiFlashWhite};
 `
 
+export const StyledDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 10px;
+`
+
 export const StyledMainButton = styled(AntdButton)`
   height: 68px;
   width: 68px;
