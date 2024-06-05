@@ -1,21 +1,18 @@
-import { ConfigProvider, Input } from 'antd'
+import { ConfigProvider } from 'antd'
 import React from 'react'
 import { colors } from '../../constants/colors'
 import { compConfig } from '../../utilities/compConfig'
+import { StyledSearch } from './StyledComponents'
 
-const SearchBar = () => {
-  const { Search } = Input
+const AntdearchBar = () => {
   return (
     <ConfigProvider theme={compConfig(colors.white)}>
-      <Search
-        placeholder='input search text'
+      <StyledSearch
+        placeholder='Search'
         allowClear
-        style={{
-          width: '100%',
-        }}
       />
     </ConfigProvider>
   )
 }
 
-export default SearchBar
+export default AntdearchBar

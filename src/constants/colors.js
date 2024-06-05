@@ -7,4 +7,5 @@ export const colors = {
   oldSilver: '#828282',
   violetsAreBlue: '#8785FF',
   white: '#FFFFFF',
+  chineseWhite: '#E0E0E0',
 }

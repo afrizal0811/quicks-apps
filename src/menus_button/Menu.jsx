@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import React, { useState } from 'react'
+import Image from '../components/image/Image'
 import PopupMenu from '../components/popup_menu/PopupMenu'
 import { colors } from '../constants/colors'
 import {
@@ -36,7 +37,7 @@ const Menu = (props) => {
 
     const selectedColor = isOpen[`${name}`] ? colorActive : colorIdle
     const renderContent = (
-      <img
+      <Image
         src={isOpen[`${name}`] ? imageActive : imageIdle}
         width='auto'
         height='auto'

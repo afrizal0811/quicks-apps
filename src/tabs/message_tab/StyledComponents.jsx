@@ -1,7 +1,66 @@
 import styled from 'styled-components'
+import AntdTypography from '../../components/typography/AntdTypography'
+import { colors } from '../../constants/colors'
 
-export const StyledTabContainer = styled.div`
+export const StyledContainer = styled.div`
   padding: 12px 20px;
   width: 734px;
-  height: 100%;
+  height: 500px;
+  overflow-y: auto;
+`
+
+export const StyledContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 90%;
+  ${({ isLoading }) =>
+    isLoading &&
+    `
+  justify-content: center;
+  align-items: center;
+  `}
+`
+
+export const StyledListWrapper = styled.div`
+  width: 100%;
+`
+
+export const StyledAvatarWrapper = styled.div`
+  width: 60px;
+  display: flex;
+  justify-content: center;
+`
+
+export const StyledList = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+`
+
+export const StyledWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+export const StyledChatWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 90%;
+`
+
+export const StyledTitle = styled(AntdTypography)`
+  color: ${colors.bleuDeFrance};
+  font-weight: 700;
+  font-size: 15px;
+`
+
+export const StyledNameChat = styled(AntdTypography)`
+  color: ${colors.darkLiver};
+  font-weight: 700;
+  font-size: 10px;
+`
+
+export const StyledPreviewChat = styled(StyledNameChat)`
+  font-weight: 500;
 `

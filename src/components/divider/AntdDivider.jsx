@@ -1,8 +1,8 @@
 import { StyledDivider } from './StyledComponents'
 import React from 'react'
 
-const Divider = () => {
+const AntdDivider = () => {
   return <StyledDivider />
 }
 
-export default Divider
+export default AntdDivider

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import React, { useState } from 'react'
+import Image from '../components/image/Image'
 import { colors } from '../constants/colors'
 import { imagePaths } from '../constants/imagePaths'
 import Menu from './Menu'
@@ -9,7 +10,7 @@ const MenuButton = () => {
   const [isClicked, setIsClicked] = useState(false)
 
   const quicksIcon = (
-    <img
+    <Image
       src={imagePaths.menuIcon}
       width='auto'
       height='auto'
