@@ -16,7 +16,7 @@ import {
 import { daysLeft, deleteItem } from './help'
 
 const AddTask = (props) => {
-  const { id } = props
+  const { id, setTotalTask } = props
   const [isCollapsed, setIsCollapsed] = useState(true)
   const [isDeleted, setIsDeleted] = useState(false)
   const [isChecked, setIsChecked] = useState(false)
@@ -24,6 +24,7 @@ const AddTask = (props) => {
 
   const handleDelete = () => {
     setIsDeleted(true)
+    setTotalTask(prev => prev + 1)
   }
 
   const renderCollapseIcon = isCollapsed ? <UpOutlined /> : <DownOutlined />
