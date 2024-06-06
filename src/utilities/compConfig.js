@@ -5,6 +5,10 @@ export const compConfig = (color) => {
         defaultBg: color,
         defaultHoverBg: color,
       },
+      Divider: {
+        colorSplit: color ? color : 'black',
+        colorTextHeading: color,
+      },
     },
   }
 }

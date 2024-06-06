@@ -4,7 +4,7 @@ import { colors } from '../../constants/colors'
 export const StyledContainer = styled.div`
   padding: 24px 32px;
   width: 734px;
-  height: 500px;
+  height: 550px;
   overflow-y: auto;
 `
 

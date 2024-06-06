@@ -1,14 +1,17 @@
+import { SearchOutlined } from '@ant-design/icons'
 import React, { useEffect, useState } from 'react'
 import AntdInput from '../../components/input/AntdInput'
 import AntdSpin from '../../components/spin/AntdSpin'
 import { getApi } from '../../utilities/handleApi'
-import Detail from './Detail'
-import List from './List'
+import DetailMessage from './DetailMessage'
+import ListMessage from './ListMessage'
 import { StyledContainer, StyledContent } from './StyledComponents'
+
 const MessageTab = () => {
   const [data, setData] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [isSelected, setIsSelected] = useState(false)
+  const [menu, setMenu] = useState({})
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,23 +24,43 @@ const MessageTab = () => {
     fetchData()
   }, [])
 
+  const newData = data.map((item) => {
+    return {
+      name: item.owner.firstName + ' ' + item.owner.lastName,
+      text: item.text,
+    }
+  })
+
   const renderLists = (
     <div>
-      <AntdInput />
-      {data.map((item, key) => (
-        <List
+      <AntdInput
+        suffix={<SearchOutlined />}
+        placeholder='Search'
+      />
+      {newData.map((data, key) => (
+        <ListMessage
+          data={data}
           index={key}
-          item={item}
           setIsSelected={setIsSelected}
+          setMenu={setMenu}
         />
       ))}
     </div>
   )
 
-  const renderSection = isSelected ? <Detail /> : renderLists
+  const renderDetails = (
+    <DetailMessage
+      data={newData}
+      menu={menu}
+      setIsSelected={setIsSelected}
+    />
+  )
+
+  const renderSection = isSelected ? renderDetails : renderLists
+
   const renderContent = isLoading ? <AntdSpin /> : renderSection
   return (
-    <StyledContainer>
+    <StyledContainer isSelected={isSelected}>
       <StyledContent isLoading={isLoading}>{renderContent}</StyledContent>
     </StyledContainer>
   )

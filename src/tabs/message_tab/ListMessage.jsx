@@ -9,20 +9,31 @@ import { imagePaths } from '../../constants/imagePaths'
 import {
   StyledAvatarWrapper,
   StyledChatWrapper,
+  StyledInfo,
   StyledList,
   StyledListWrapper,
-  StyledNameChat,
+  StyledName,
   StyledNotifContent,
   StyledNotifWrapper,
-  StyledPreviewChat,
-  StyledTitle,
   StyledWrapper,
 } from './StyledComponents'
 import { avatarGroupData } from './help'
 
-const List = (props) => {
-  const { item, index, setIsSelected } = props
-  const fullName = item.owner.firstName + ' ' + item.owner.lastName
+const ListMessage = (props) => {
+  const { data, index, setIsSelected, setMenu } = props
+
+  const chatName = 'Chat - ' + index
+  const isGroup = index < 5
+
+  const handleSelected = () => {
+    const newItems = {
+      chatName: chatName,
+      isGroup: isGroup,
+      index: index,
+    }
+    setMenu(newItems)
+    setIsSelected(true)
+  }
   const userIcon = (
     <Image
       src={imagePaths.userWhite}
@@ -47,23 +58,26 @@ const List = (props) => {
     />
   )
 
-  const notification = index % 2 > 0 && (
+  const notification = isGroup && (
     <StyledNotifWrapper>
       <StyledNotifContent />
     </StyledNotifWrapper>
   )
 
-  const renderAvatar = index < 5 ? AvatarGroup : AvatarSingle
+  const renderAvatar = isGroup ? AvatarGroup : AvatarSingle
   return (
-    <StyledListWrapper onClick={() => setIsSelected(true)}>
+    <StyledListWrapper onClick={handleSelected}>
       <StyledList>
         <StyledAvatarWrapper>{renderAvatar}</StyledAvatarWrapper>
         <StyledChatWrapper>
           <StyledWrapper>
-            <StyledTitle text={`Chat - ${index}`} />
+            <StyledName text={chatName} />
             <StyledWrapper>
-              <StyledNameChat text={fullName} />
-              <StyledPreviewChat text={item.text} />
+              <StyledInfo text={data.name} />
+              <StyledInfo
+                text={data.text}
+                isDetail={true}
+              />
             </StyledWrapper>
           </StyledWrapper>
           <StyledWrapper>
@@ -80,4 +94,4 @@ const List = (props) => {
   )
 }
 
-export default List
+export default ListMessage

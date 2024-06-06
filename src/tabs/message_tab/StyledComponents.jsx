@@ -1,12 +1,16 @@
+import { Flex } from 'antd'
 import styled from 'styled-components'
 import AntdTypography from '../../components/typography/AntdTypography'
 import { colors } from '../../constants/colors'
-
 export const StyledContainer = styled.div`
   padding: 24px 32px;
   width: 734px;
-  height: 500px;
-  overflow-y: auto;
+  height: 550px;
+  ${({ isSelected }) =>
+    !isSelected &&
+    `
+    overflow-y: auto;
+  `}
 `
 
 export const StyledContent = styled.div`
@@ -16,8 +20,8 @@ export const StyledContent = styled.div`
   ${({ isLoading }) =>
     isLoading &&
     `
-  justify-content: center;
-  align-items: center;
+    justify-content: center;
+    align-items: center;
   `}
 `
 
@@ -40,6 +44,7 @@ export const StyledList = styled.div`
 export const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 5px;
 `
 
 export const StyledChatWrapper = styled.div`
@@ -47,22 +52,6 @@ export const StyledChatWrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   width: 90%;
-`
-
-export const StyledTitle = styled(AntdTypography)`
-  color: ${colors.bleuDeFrance};
-  font-weight: 700;
-  font-size: 15px;
-`
-
-export const StyledNameChat = styled(AntdTypography)`
-  color: ${colors.darkLiver};
-  font-weight: 700;
-  font-size: 10px;
-`
-
-export const StyledPreviewChat = styled(StyledNameChat)`
-  font-weight: 500;
 `
 
 export const StyledNotifWrapper = styled.div`
@@ -77,4 +66,72 @@ export const StyledNotifContent = styled.div`
   width: 10px;
   background-color: ${colors.fireOpal};
   border-radius: 50%;
+`
+
+export const StyledLink = styled.a`
+  color: ${colors.darkLiver};
+  &:hover {
+    color: ${colors.darkLiver};
+  }
+`
+
+export const StyledChatContainer = styled(Flex)`
+  width: 670px;
+  height: 370px;
+  overflow-y: scroll;
+  margin-bottom: 10px;
+`
+
+export const StyledBubble = styled(Flex)`
+  ${({ bubbleColor }) =>
+    `
+    background-color: ${bubbleColor};
+  `}
+  padding: 10px;
+  border-radius: 5px;
+  width: auto;
+`
+
+export const StyledBubbleWrapper = styled(Flex)`
+  ${({ isReverse }) =>
+    isReverse &&
+    `
+    flex-direction: row-reverse;
+  `}
+`
+
+export const StyledTempNotif = styled(Flex)`
+  background-color: ${colors.brightGray};
+  color: ${colors.bleuDeFrance};
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: 700;
+  width: 150px;
+  z-index: 100;
+`
+
+export const StyledInfo = styled(AntdTypography)`
+  color: ${colors.darkLiver};
+  font-weight: 700;
+  font-size: 12px;
+
+  ${({ isDetail }) =>
+    isDetail &&
+    `
+    font-weight: 500;
+    width: auto;
+  `}
+`
+
+export const StyledName = styled(AntdTypography)`
+  color: ${colors.bleuDeFrance};
+  font-weight: 700;
+  font-size: 15px;
+
+  ${({ isChat, textColor }) =>
+    isChat &&
+    `
+    color: ${textColor};
+    font-size: 13px;
+  `}
 `
