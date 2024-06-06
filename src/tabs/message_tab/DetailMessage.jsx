@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import AntdButton from '../../components/button/AntdButton'
 import AntdDivider from '../../components/divider/AntdDivider'
 import AntdInput from '../../components/input/AntdInput'
+import AntdSpin from '../../components/spin/AntdSpin'
 import { colors } from '../../constants/colors'
 import BubbleMessage from './BubbleMessage'
 import {
@@ -11,7 +12,7 @@ import {
   StyledInfo,
   StyledLink,
   StyledName,
-  StyledTempNotif,
+  StyledNotif,
 } from './StyledComponents'
 import { getDate } from './help'
 
@@ -20,11 +21,12 @@ const DetailMessage = (props) => {
   const { chatName, isGroup } = menu
   const [myMessage, setMyMessage] = useState([])
   const [isScrolled, setIsScrolled] = useState(false)
+  const [value, setValue] = useState('')
+
   const handleSend = () => {
-    const value = document.getElementById('inputText').value
     if (value) {
       setMyMessage((prev) => [...prev, value])
-      document.getElementById('inputText').value = ''
+      setValue('')
     }
   }
 
@@ -73,7 +75,46 @@ const DetailMessage = (props) => {
       <AntdDivider />
     </div>
   )
-  const renderOtherChats = (
+
+  const renderNewChatDivider = isGroup && (
+    <AntdDivider
+      title='New Message'
+      color={colors.fireOpal}
+    />
+  )
+
+  const renderDateDivider = (
+    <AntdDivider
+      title={`Today ${getDate()}`}
+      color={colors.darkLiver}
+    />
+  )
+
+  const renderNewChatNotif = isGroup && !isScrolled && (
+    <Flex
+      justify='center'
+      align='center'
+    >
+      <StyledNotif
+        justify='center'
+        textColor={colors.bleuDeFrance}
+      >
+        New Message
+      </StyledNotif>
+    </Flex>
+  )
+
+  const renderSupportNotif = (
+    <StyledNotif
+      gap={10}
+      textColor={colors.darkLiver}
+    >
+      <AntdSpin size='small' />
+      Please wait while we connect you with one of our team ...
+    </StyledNotif>
+  )
+
+  const multiChats = (
     <Flex
       gap={10}
       vertical
@@ -91,35 +132,37 @@ const DetailMessage = (props) => {
     </Flex>
   )
 
-  const renderNewMessage = isGroup && (
-    <AntdDivider
-      title='New Message'
-      color={colors.fireOpal}
+  const renderGroupChats = (
+    <div>
+      {multiChats}
+      {renderDateDivider}
+      {renderNewChatNotif}
+      {multiChats}
+      {renderNewChatDivider}
+      {multiChats}
+    </div>
+  )
+
+  const singleChat = (
+    <BubbleMessage
+      data={data[0]}
+      textColor={colors.bleuDeFrance}
+      bubbleColor={colors.cultured}
     />
   )
-  const renderTempNotif = isGroup && !isScrolled && (
-    <Flex justify='center' align='center'>
-      <StyledTempNotif justify='center'>New Message</StyledTempNotif>
-    </Flex>
-  )
+
+  const renderChat = isGroup ? renderGroupChats : singleChat
 
   return (
     <div>
       {renderHeader}
       <StyledChatContainer
-        onScroll={() => setIsScrolled(true)}
         gap={10}
+        isGroup={isGroup}
+        onScroll={() => setIsScrolled(true)}
         vertical
       >
-        {renderOtherChats}
-        <AntdDivider
-          title={`Today ${getDate()}`}
-          color={colors.darkLiver}
-        />
-        {renderTempNotif}
-        {renderOtherChats}
-        {renderNewMessage}
-        {renderOtherChats}
+        {renderChat}
         {myMessage.map((message) => (
           <BubbleMessage
             isReverse={true}
@@ -128,12 +171,13 @@ const DetailMessage = (props) => {
             bubbleColor={colors.lavender}
           />
         ))}
+        {!isGroup && renderSupportNotif}
       </StyledChatContainer>
-
       <Flex gap={10}>
         <AntdInput
           placeholder='Type a new text'
-          id='inputText'
+          onChange={(e) => setValue(e.target.value)}
+          value={value}
         />
         <AntdButton
           type='primary'

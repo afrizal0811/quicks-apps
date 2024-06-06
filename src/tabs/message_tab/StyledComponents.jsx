@@ -2,6 +2,7 @@ import { Flex } from 'antd'
 import styled from 'styled-components'
 import AntdTypography from '../../components/typography/AntdTypography'
 import { colors } from '../../constants/colors'
+
 export const StyledContainer = styled.div`
   padding: 24px 32px;
   width: 734px;
@@ -77,9 +78,14 @@ export const StyledLink = styled.a`
 
 export const StyledChatContainer = styled(Flex)`
   width: 670px;
-  height: 370px;
-  overflow-y: scroll;
+  overflow-y: auto;
   margin-bottom: 10px;
+  height: 370px;
+  ${({ isGroup }) =>
+    !isGroup &&
+    `
+    height: 390px;
+  `}
 `
 
 export const StyledBubble = styled(Flex)`
@@ -100,14 +106,16 @@ export const StyledBubbleWrapper = styled(Flex)`
   `}
 `
 
-export const StyledTempNotif = styled(Flex)`
+export const StyledNotif = styled(Flex)`
   background-color: ${colors.brightGray};
-  color: ${colors.bleuDeFrance};
+  ${({ textColor }) => `color: ${textColor};`}
   padding: 10px;
   border-radius: 5px;
-  font-weight: 700;
-  width: 150px;
+  font-weight: 600;
+  position: absolute;
+  bottom: 0px;
   z-index: 100;
+  margin-bottom: 60px;
 `
 
 export const StyledInfo = styled(AntdTypography)`

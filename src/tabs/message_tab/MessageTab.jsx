@@ -58,7 +58,7 @@ const MessageTab = () => {
 
   const renderSection = isSelected ? renderDetails : renderLists
 
-  const renderContent = isLoading ? <AntdSpin /> : renderSection
+  const renderContent = isLoading ? <AntdSpin size='large' text='Loading Chats...'/> : renderSection
   return (
     <StyledContainer isSelected={isSelected}>
       <StyledContent isLoading={isLoading}>{renderContent}</StyledContent>

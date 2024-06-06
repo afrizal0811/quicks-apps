@@ -4,6 +4,7 @@ export const colors = {
   bleuDeFrance: '#2F80ED',
   brightGray: '#E9F3FF',
   chineseWhite: '#E0E0E0',
+  cultured: '#F8F8F8',
   darkLiver: '#4F4F4F',
   fireOpal: '#EB5757',
   mellowApricot: '#F8B76B',

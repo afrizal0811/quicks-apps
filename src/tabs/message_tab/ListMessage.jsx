@@ -22,8 +22,9 @@ import { avatarGroupData } from './help'
 const ListMessage = (props) => {
   const { data, index, setIsSelected, setMenu } = props
 
-  const chatName = 'Chat - ' + index
-  const isGroup = index < 5
+  //manually add support chat
+  const chatName = index === 4 ? 'FisaVast Support' : 'Chat - ' + index
+  const isGroup = index < 4
 
   const handleSelected = () => {
     const newItems = {

@@ -1,20 +1,21 @@
-
 import { ConfigProvider } from 'antd'
 import React from 'react'
 import { colors } from '../../constants/colors'
 import { compConfig } from '../../utilities/compConfig'
-import { StyledSearch } from './StyledComponents'
+import { StyledInput } from './StyledComponents'
 
 const AntdInput = (props) => {
-  const { suffix, placeholder, id } = props
+  const { suffix, placeholder, id, onChange, value } = props
 
   return (
     <ConfigProvider theme={compConfig(colors.white)}>
-      <StyledSearch
+      <StyledInput
         allowClear
+        id={id}
         placeholder={placeholder}
         suffix={suffix}
-        id={id}
+        onChange={onChange}
+        value={value}
       />
     </ConfigProvider>
   )
