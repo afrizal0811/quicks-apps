@@ -1,3 +1,4 @@
+import { Flex } from 'antd'
 import React from 'react'
 import AntdAvatar from '../../components/avatar/AntdAvatar'
 import AntdAvatarGroup from '../../components/avatar/AntdAvatarGroup'
@@ -10,12 +11,10 @@ import {
   StyledAvatarWrapper,
   StyledChatWrapper,
   StyledInfo,
-  StyledList,
   StyledListWrapper,
   StyledName,
   StyledNotifContent,
   StyledNotifWrapper,
-  StyledWrapper,
 } from './StyledComponents'
 import { avatarGroupData } from './help'
 
@@ -60,7 +59,10 @@ const ListMessage = (props) => {
   )
 
   const notification = isGroup && (
-    <StyledNotifWrapper>
+    <StyledNotifWrapper
+      justify='flex-end'
+      align='center'
+    >
       <StyledNotifContent />
     </StyledNotifWrapper>
   )
@@ -68,28 +70,39 @@ const ListMessage = (props) => {
   const renderAvatar = isGroup ? AvatarGroup : AvatarSingle
   return (
     <StyledListWrapper onClick={handleSelected}>
-      <StyledList>
-        <StyledAvatarWrapper>{renderAvatar}</StyledAvatarWrapper>
-        <StyledChatWrapper>
-          <StyledWrapper>
+      <Flex gap={15}>
+        <StyledAvatarWrapper justify='center'>
+          {renderAvatar}
+        </StyledAvatarWrapper>
+        <StyledChatWrapper justify='space-between'>
+          <Flex
+            gap={5}
+            vertical
+          >
             <StyledName text={chatName} />
-            <StyledWrapper>
+            <Flex
+              gap={5}
+              vertical
+            >
               <StyledInfo text={data.name} />
               <StyledInfo
                 text={data.text}
                 isDetail={true}
               />
-            </StyledWrapper>
-          </StyledWrapper>
-          <StyledWrapper>
+            </Flex>
+          </Flex>
+          <Flex
+            gap={5}
+            vertical
+          >
             <AntdTypography
               text='05/06/2024 17:02'
               type='secondary'
             />
             {notification}
-          </StyledWrapper>
+          </Flex>
         </StyledChatWrapper>
-      </StyledList>
+      </Flex>
       <AntdDivider />
     </StyledListWrapper>
   )

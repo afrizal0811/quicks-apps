@@ -1,19 +1,13 @@
+import { Flex } from 'antd'
 import styled from 'styled-components'
 import AntdButton from '../components/button/AntdButton'
 import { colors } from '../constants/colors'
 
-export const StyledContainer = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
+export const StyledContainer = styled(Flex)`
   height: 100vh;
   width: 100%;
   padding: 24px;
   z-index: 100;
-`
-export const StyledMenuContainer = styled.div`
-  display: flex;
-  flex-direction: row;
 `
 
 export const StyledMenuContent = styled.div`
@@ -21,21 +15,8 @@ export const StyledMenuContent = styled.div`
   flex-direction: column;
 `
 
-export const StyledWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
+export const StyledWrapper = styled(Flex)`
   color: ${colors.antiFlashWhite};
-`
-
-export const StyledDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-end;
-  gap: 10px;
 `
 
 export const StyledMainButton = styled(AntdButton)`

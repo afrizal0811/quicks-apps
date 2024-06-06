@@ -1,39 +1,21 @@
+import { Flex } from 'antd'
 import styled from 'styled-components'
 import { colors } from '../../constants/colors'
-
 export const StyledContainer = styled.div`
   padding: 24px 32px;
   width: 734px;
-  height: 550px;
+  height: 520px;
   overflow-y: auto;
 `
 
-export const StyledHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
+export const StyledHeader = styled(Flex)`
   padding-bottom: 22px;
 `
 
-export const StyledInfoContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`
-
-export const StyledDate = styled.div`
-  display: flex;
-  gap: 15px;
-`
-
-export const StyledInputContainer = styled.div`
-  display: flex;
-  flex-direction: column;
+export const StyledInputContainer = styled(Flex)`
   padding: 0 25px;
-  gap: 10px;
   ${({ isCollapsed }) =>
-    !isCollapsed
-      ? ` display: none; visibility:hidden; `
-      : `padding-top: 22px;`};
+    !isCollapsed ? ` display: none;  ` : `padding-top: 22px;`};
 `
 
 export const StyledLink = styled.a`

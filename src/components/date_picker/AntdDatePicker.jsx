@@ -1,6 +1,6 @@
-import { DatePicker } from 'antd'
+import { DatePicker, Flex } from 'antd'
 import React, { useState } from 'react'
-import { StyledContainer, StyledIcon } from './StyledComponents'
+import { StyledIcon } from './StyledComponents'
 
 const AntdDatePicker = (props) => {
   const { setDate, disabled } = props
@@ -14,7 +14,7 @@ const AntdDatePicker = (props) => {
   }
 
   return (
-    <StyledContainer>
+    <Flex gap={10}>
       <StyledIcon isSelected={isSelected} />
       <DatePicker
         format={{
@@ -25,7 +25,7 @@ const AntdDatePicker = (props) => {
         onChange={onChange}
         disabled={disabled}
       />
-    </StyledContainer>
+    </Flex>
   )
 }
 

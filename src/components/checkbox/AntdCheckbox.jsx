@@ -1,9 +1,7 @@
+import { Flex } from 'antd'
 import React, { useState } from 'react'
-import {
-  StyledCheckbox,
-  StyledContainer,
-  StyledTextArea,
-} from './StyledComponents'
+import { StyledCheckbox, StyledTextArea } from './StyledComponents'
+
 const AntdCheckbox = (props) => {
   const { setIsChecked } = props
   const [isClicked, setIsCliked] = useState(false)
@@ -14,7 +12,7 @@ const AntdCheckbox = (props) => {
   }
 
   return (
-    <StyledContainer>
+    <Flex gap={15}>
       <StyledCheckbox onChange={(e) => handleChange(e)} />
       <StyledTextArea
         isChecked={isClicked}
@@ -22,7 +20,7 @@ const AntdCheckbox = (props) => {
         width='400px'
         disabled={isClicked}
       />
-    </StyledContainer>
+    </Flex>
   )
 }
 

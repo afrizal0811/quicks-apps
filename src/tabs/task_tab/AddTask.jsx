@@ -1,4 +1,5 @@
 import { DownOutlined, MoreOutlined, UpOutlined } from '@ant-design/icons'
+import { Flex } from 'antd'
 import React, { useState } from 'react'
 import AntdCheckbox from '../../components/checkbox/AntdCheckbox'
 import AntdDatePicker from '../../components/date_picker/AntdDatePicker'
@@ -6,35 +7,25 @@ import AntdDivider from '../../components/divider/AntdDivider'
 import AntdDropdown from '../../components/dropdown/AntdDropdown'
 import AntdTextArea from '../../components/text_area/AntdTextArea'
 import AntdTypography from '../../components/typography/AntdTypography'
-import {
-  StyledDate,
-  StyledDiv,
-  StyledInfoContainer,
-  StyledInputContainer,
-  StyledLink,
-} from './StyledComponents'
+import { StyledDiv, StyledInputContainer, StyledLink } from './StyledComponents'
 import { daysLeft, deleteItem } from './help'
-
 const AddTask = (props) => {
-  const { id, setTotalTask } = props
+  const { id } = props
   const [isCollapsed, setIsCollapsed] = useState(true)
-  const [isDeleted, setIsDeleted] = useState(false)
   const [isChecked, setIsChecked] = useState(false)
   const [date, setDate] = useState('')
-
-  const handleDelete = () => {
-    setIsDeleted(true)
-    setTotalTask(prev => prev + 1)
-  }
 
   const renderCollapseIcon = isCollapsed ? <UpOutlined /> : <DownOutlined />
   const days = daysLeft(date) && !isChecked ? `${daysLeft(date)} Days Left` : ''
 
   return (
-    <StyledDiv isDeleted={isDeleted}>
-      <StyledInfoContainer>
+    <StyledDiv>
+      <Flex
+        justify='space-between'
+        align='center'
+      >
         <AntdCheckbox setIsChecked={setIsChecked} />
-        <StyledDate>
+        <Flex gap={15}>
           <AntdTypography
             text={days}
             type='danger'
@@ -52,13 +43,16 @@ const AddTask = (props) => {
           <AntdDropdown
             icon={<MoreOutlined rotate={90} />}
             items={deleteItem}
-            onClick={handleDelete}
             placement='bottomRight'
             trigger='click'
           />
-        </StyledDate>
-      </StyledInfoContainer>
-      <StyledInputContainer isCollapsed={isCollapsed}>
+        </Flex>
+      </Flex>
+      <StyledInputContainer
+        gap={10}
+        isCollapsed={isCollapsed}
+        vertical
+      >
         <AntdDatePicker
           disabled={isChecked}
           setDate={setDate}

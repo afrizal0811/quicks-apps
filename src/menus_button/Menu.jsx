@@ -1,3 +1,4 @@
+import { Flex } from 'antd'
 import { motion } from 'framer-motion'
 import React, { useState } from 'react'
 import Image from '../components/image/Image'
@@ -5,9 +6,7 @@ import { colors } from '../constants/colors'
 import Tabs from '../tabs/Tabs'
 import {
   StyledBackButton,
-  StyledDiv,
   StyledMenuButton,
-  StyledMenuContainer,
   StyledMenuContent,
   StyledWrapper,
 } from './StyledComponents'
@@ -49,7 +48,12 @@ const Menu = (props) => {
       />
     )
     return (
-      <StyledWrapper>
+      <StyledWrapper
+        align='center'
+        gap={10}
+        justify='center'
+        vertical
+      >
         {isOpenEmpty && name}
         <StyledMenuContent>
           {isOpen[`${name}`] && renderBackButton}
@@ -66,10 +70,15 @@ const Menu = (props) => {
 
   return (
     <motion.div animate={{ x: isClicked ? 85 : 350, scale: isClicked ? 1 : 0 }}>
-      <StyledDiv>
+      <Flex
+        align='flex-end'
+        gap={10}
+        justify='flex-end'
+        vertical
+      >
         {isOpen[`${selectedMenu}`] && <Tabs selectedMenu={selectedMenu} />}
-        <StyledMenuContainer>{renderMenus}</StyledMenuContainer>
-      </StyledDiv>
+        <Flex>{renderMenus}</Flex>
+      </Flex>
     </motion.div>
   )
 }

@@ -19,7 +19,10 @@ const MenuButton = () => {
   )
 
   return (
-    <StyledContainer>
+    <StyledContainer
+      justify='flex-end'
+      align='flex-end'
+    >
       <Menu
         isClicked={isClicked}
         setIsClicked={setIsClicked}

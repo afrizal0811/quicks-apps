@@ -2,10 +2,7 @@ import { Checkbox } from 'antd'
 import styled from 'styled-components'
 import { colors } from '../../constants/colors'
 import AntdTextArea from '../text_area/AntdTextArea'
-export const StyledContainer = styled.div`
-  display: flex;
-  gap: 15px;
-`
+
 
 export const StyledCheckbox = styled(Checkbox)`
   font-weight: 600;

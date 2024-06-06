@@ -1,6 +1,6 @@
-import { Input } from 'antd'
+import { Flex, Input } from 'antd'
 import React from 'react'
-import { StyledContainer, StyledIcon } from './StyledComponents'
+import { StyledIcon } from './StyledComponents'
 
 const AntdTextArea = (props) => {
   const { placeholder, needIcon, width, className, disabled, id } = props
@@ -9,6 +9,7 @@ const AntdTextArea = (props) => {
   const handleClick = () => {
     document.getElementById(id).focus()
   }
+
   const renderIcon = needIcon && (
     <a
       href={() => false}
@@ -19,7 +20,7 @@ const AntdTextArea = (props) => {
   )
 
   return (
-    <StyledContainer>
+    <Flex gap={10}>
       {renderIcon}
       <TextArea
         autoSize={{ minRows: 1 }}
@@ -29,7 +30,7 @@ const AntdTextArea = (props) => {
         placeholder={placeholder}
         style={{ width: width }}
       />
-    </StyledContainer>
+    </Flex>
   )
 }
 

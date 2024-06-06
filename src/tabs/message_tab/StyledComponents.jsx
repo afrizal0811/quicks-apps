@@ -4,9 +4,10 @@ import AntdTypography from '../../components/typography/AntdTypography'
 import { colors } from '../../constants/colors'
 
 export const StyledContainer = styled.div`
-  padding: 24px 32px;
+  padding: 0 32px;
+  margin: 24px 0;
   width: 734px;
-  height: 550px;
+  height: 500px;
   ${({ isSelected }) =>
     !isSelected &&
     `
@@ -14,51 +15,19 @@ export const StyledContainer = styled.div`
   `}
 `
 
-export const StyledContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 90%;
-  ${({ isLoading }) =>
-    isLoading &&
-    `
-    justify-content: center;
-    align-items: center;
-  `}
+export const StyledContent = styled(Flex)`
+  height: 100%;
 `
 
-export const StyledListWrapper = styled.a`
-  width: 100%;
-`
-
-export const StyledAvatarWrapper = styled.div`
+export const StyledAvatarWrapper = styled(Flex)`
   width: 60px;
-  display: flex;
-  justify-content: center;
 `
 
-export const StyledList = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 15px;
-`
-
-export const StyledWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-`
-
-export const StyledChatWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+export const StyledChatWrapper = styled(Flex)`
   width: 90%;
 `
 
-export const StyledNotifWrapper = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+export const StyledNotifWrapper = styled(Flex)`
   height: 100%;
 `
 
@@ -67,6 +36,9 @@ export const StyledNotifContent = styled.div`
   width: 10px;
   background-color: ${colors.fireOpal};
   border-radius: 50%;
+`
+export const StyledListWrapper = styled.a`
+  width: 100%;
 `
 
 export const StyledLink = styled.a`

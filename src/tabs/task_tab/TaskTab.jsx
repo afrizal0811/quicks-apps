@@ -1,24 +1,13 @@
 import { DownOutlined } from '@ant-design/icons'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import AntdButton from '../../components/button/AntdButton'
 import AntdDropdown from '../../components/dropdown/AntdDropdown'
 import AddTask from './AddTask'
 import { StyledContainer, StyledHeader } from './StyledComponents'
 import { items } from './help'
+
 const TaskTab = () => {
   const [tasks, setTasks] = useState([])
-  const [totalTask, setTotalTask] = useState(0)
-
-  useEffect(() => {
-    const isSame = totalTask === tasks.length
-    const isMoreTask = tasks.length > 0
-    const isMoreTotal = totalTask > 0
-
-    if (isSame && isMoreTask && isMoreTotal) {
-      setTasks([])
-      setTotalTask(0)
-    }
-  }, [totalTask, tasks])
 
   const handleClick = () => {
     setTasks((prev) => [...prev, Date.now()])
@@ -26,7 +15,7 @@ const TaskTab = () => {
 
   return (
     <StyledContainer>
-      <StyledHeader>
+      <StyledHeader justify='space-between'>
         <AntdDropdown
           icon={<DownOutlined />}
           isButton={true}
@@ -42,10 +31,7 @@ const TaskTab = () => {
         />
       </StyledHeader>
       {tasks.map((data) => (
-        <AddTask
-          id={data}
-          setTotalTask={setTotalTask}
-        />
+        <AddTask id={data} />
       ))}
     </StyledContainer>
   )

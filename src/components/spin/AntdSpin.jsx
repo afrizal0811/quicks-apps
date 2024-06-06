@@ -1,13 +1,18 @@
-import { Spin } from 'antd'
+import { Flex, Spin } from 'antd'
 import React from 'react'
-import { StyledContainer } from './StyledComponents'
+
 const AntdSpin = (props) => {
-  const {size, text } = props
+  const { size, text } = props
   return (
-    <StyledContainer>
+    <Flex
+      gap={10}
+      justify='center'
+      align='center'
+      vertical
+    >
       <Spin size={size} />
       {text}
-    </StyledContainer>
+    </Flex>
   )
 }
 
