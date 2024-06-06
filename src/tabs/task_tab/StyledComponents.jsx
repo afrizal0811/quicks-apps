@@ -1,6 +1,8 @@
 import { Flex } from 'antd'
 import styled from 'styled-components'
 import { colors } from '../../constants/colors'
+import AntdDropdown from '../../components/dropdown/AntdDropdown'
+
 export const StyledContainer = styled.div`
   padding: 24px 32px;
   width: 734px;
@@ -16,6 +18,10 @@ export const StyledInputContainer = styled(Flex)`
   padding: 0 25px;
   ${({ isCollapsed }) =>
     !isCollapsed ? ` display: none;  ` : `padding-top: 22px;`};
+`
+
+export const StyledDropdown = styled(AntdDropdown)`
+  margin-left: 100px;
 `
 
 export const StyledLink = styled.a`

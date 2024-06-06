@@ -1,9 +1,12 @@
 import { DownOutlined } from '@ant-design/icons'
 import React, { useState } from 'react'
 import AntdButton from '../../components/button/AntdButton'
-import AntdDropdown from '../../components/dropdown/AntdDropdown'
 import AddTask from './AddTask'
-import { StyledContainer, StyledHeader } from './StyledComponents'
+import {
+  StyledContainer,
+  StyledDropdown,
+  StyledHeader,
+} from './StyledComponents'
 import { items } from './help'
 
 const TaskTab = () => {
@@ -16,7 +19,7 @@ const TaskTab = () => {
   return (
     <StyledContainer>
       <StyledHeader justify='space-between'>
-        <AntdDropdown
+        <StyledDropdown
           icon={<DownOutlined />}
           isButton={true}
           items={items}
