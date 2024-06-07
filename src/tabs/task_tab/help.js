@@ -1,3 +1,4 @@
+import { colors } from '../../constants/colors'
 export const items = [
   {
     key: '1',
@@ -13,6 +14,41 @@ export const deleteItem = [
   {
     key: '1',
     label: 'Delete',
+  },
+]
+
+export const stickerOptions = [
+  {
+    label: 'Important ASAP',
+    value: colors.aliceBlue,
+  },
+  {
+    label: 'Offline Meeting',
+    value: colors.deepPeach,
+  },
+  {
+    label: 'Virtual Meeting',
+    value: colors.lemonMeringue,
+  },
+  {
+    label: 'ASAP',
+    value: colors.magicMint,
+  },
+  {
+    label: 'Client Related',
+    value: colors.teaGreen,
+  },
+  {
+    label: 'Self Task',
+    value: colors.lavenderBlue,
+  },
+  {
+    label: 'Appointments',
+    value: colors.pinkLace,
+  },
+  {
+    label: 'Court Related',
+    value: colors.babyBlue,
   },
 ]
 

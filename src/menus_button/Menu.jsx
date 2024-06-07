@@ -4,20 +4,21 @@ import React, { useState } from 'react'
 import Image from '../components/image/Image'
 import { colors } from '../constants/colors'
 import Tabs from '../tabs/Tabs'
+import { isObjectEmpty } from '../utilities/isEmpty'
 import {
   StyledBackButton,
   StyledMenuButton,
   StyledMenuContent,
   StyledWrapper,
 } from './StyledComponents'
-import { isEmpty, menuData } from './help'
+import { menuData } from './help'
 
 const Menu = (props) => {
   const { isClicked, setIsClicked } = props
   const [isOpen, setIsOpen] = useState({})
   const [selectedMenu, setSelectedMenu] = useState('')
 
-  const isOpenEmpty = isEmpty(isOpen)
+  const isOpenEmpty = isObjectEmpty(isOpen)
 
   const handleClickBack = () => {
     setIsClicked(false)

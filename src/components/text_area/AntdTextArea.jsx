@@ -1,27 +1,30 @@
 import { ConfigProvider, Flex, Input } from 'antd'
 import React from 'react'
 import { compConfig } from '../../utilities/compConfig'
-import { StyledIcon } from './StyledComponents'
 
 const AntdTextArea = (props) => {
-  const { placeholder, needIcon, width, className, disabled, id, color } = props
+  const { placeholder, icon, width, className, disabled, id, color } = props
   const { TextArea } = Input
 
   const handleClick = () => {
     document.getElementById(id).focus()
   }
 
-  const renderIcon = needIcon && (
+  const renderIcon = icon && (
     <a
       href={() => false}
       onClick={handleClick}
     >
-      <StyledIcon />
+      {icon}
     </a>
   )
 
   return (
-    <Flex gap={10}>
+    <Flex
+      gap={10}
+      justify='center'
+      align='center'
+    >
       {renderIcon}
       <ConfigProvider theme={compConfig(color)}>
         <TextArea

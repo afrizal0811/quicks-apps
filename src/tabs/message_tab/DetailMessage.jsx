@@ -6,6 +6,7 @@ import AntdDivider from '../../components/divider/AntdDivider'
 import AntdInput from '../../components/input/AntdInput'
 import AntdSpin from '../../components/spin/AntdSpin'
 import { colors } from '../../constants/colors'
+import { isArrayEmpty } from '../../utilities/isEmpty'
 import BubbleMessage from './BubbleMessage'
 import {
   StyledChatContainer,
@@ -23,7 +24,7 @@ const DetailMessage = (props) => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [value, setValue] = useState('')
 
-  const isEmptyMessage = myMessage.length === 0
+  const isEmptyMessage = isArrayEmpty(myMessage)
 
   const handleSend = () => {
     if (value) {

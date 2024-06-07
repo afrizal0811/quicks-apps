@@ -2,6 +2,7 @@ import { Flex } from 'antd'
 import styled from 'styled-components'
 import { colors } from '../../constants/colors'
 import AntdDropdown from '../../components/dropdown/AntdDropdown'
+import Image from '../../components/image/Image'
 
 export const StyledContainer = styled.div`
   padding: 24px 32px;
@@ -38,4 +39,8 @@ export const StyledDiv = styled.div`
     `
      display: none;
   `};
+`
+
+export const StyledIcon = styled(Image)`
+  
 `

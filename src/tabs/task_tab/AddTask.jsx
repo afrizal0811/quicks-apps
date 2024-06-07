@@ -5,10 +5,13 @@ import AntdCheckbox from '../../components/checkbox/AntdCheckbox'
 import AntdDatePicker from '../../components/date_picker/AntdDatePicker'
 import AntdDivider from '../../components/divider/AntdDivider'
 import AntdDropdown from '../../components/dropdown/AntdDropdown'
+import AntdSelectTag from '../../components/select_tag/AntdSelectTag'
 import AntdTextArea from '../../components/text_area/AntdTextArea'
 import AntdTypography from '../../components/typography/AntdTypography'
 import { StyledDiv, StyledInputContainer, StyledLink } from './StyledComponents'
-import { daysLeft, deleteItem } from './help'
+import { daysLeft, deleteItem, stickerOptions } from './help'
+import Image from '../../components/image/Image'
+import { imagePaths } from '../../constants/imagePaths'
 
 const AddTask = (props) => {
   const { id } = props
@@ -18,6 +21,15 @@ const AddTask = (props) => {
 
   const renderCollapseIcon = isCollapsed ? <UpOutlined /> : <DownOutlined />
   const days = daysLeft(date) && !isChecked ? `${daysLeft(date)} Days Left` : ''
+
+  const textAreaIcon = (
+    <Image
+      src={imagePaths.penIcon}
+      width='14px'
+      height='14px'
+      alt='text-icon'
+    />
+  )
 
   return (
     <StyledDiv>
@@ -59,11 +71,15 @@ const AddTask = (props) => {
           setDate={setDate}
         />
         <AntdTextArea
-          id={id}
           disabled={isChecked}
-          needIcon={true}
+          icon={textAreaIcon}
+          id={id}
           placeholder='No Description'
           width='645px'
+        />
+        <AntdSelectTag
+          disabled={isChecked}
+          options={stickerOptions}
         />
       </StyledInputContainer>
       <AntdDivider />

@@ -18,4 +18,13 @@ export const colors = {
   lavenderIndigo: '#9B51E0',
   water: '#D2F2EA',
   mint: '#43B78D',
+  //sticker
+  aliceBlue: '#E9F3FF',
+  deepPeach: '#FDCFA4',
+  lemonMeringue: '#F9E9C3',
+  magicMint: '#AFEBDB',
+  teaGreen: '#CBF1C2',
+  lavenderBlue: '#CFCEF9',
+  pinkLace: '#F9E0FD',
+  babyBlue: '#9DD0ED',
 }
