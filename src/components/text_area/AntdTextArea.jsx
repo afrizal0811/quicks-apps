@@ -1,9 +1,10 @@
-import { Flex, Input } from 'antd'
+import { ConfigProvider, Flex, Input } from 'antd'
 import React from 'react'
+import { compConfig } from '../../utilities/compConfig'
 import { StyledIcon } from './StyledComponents'
 
 const AntdTextArea = (props) => {
-  const { placeholder, needIcon, width, className, disabled, id } = props
+  const { placeholder, needIcon, width, className, disabled, id, color } = props
   const { TextArea } = Input
 
   const handleClick = () => {
@@ -22,14 +23,16 @@ const AntdTextArea = (props) => {
   return (
     <Flex gap={10}>
       {renderIcon}
-      <TextArea
-        autoSize={{ minRows: 1 }}
-        className={className}
-        disabled={disabled}
-        id={id}
-        placeholder={placeholder}
-        style={{ width: width }}
-      />
+      <ConfigProvider theme={compConfig(color)}>
+        <TextArea
+          autoSize={{ minRows: 1 }}
+          className={className}
+          disabled={disabled}
+          id={id}
+          placeholder={placeholder}
+          style={{ width: width }}
+        />
+      </ConfigProvider>
     </Flex>
   )
 }

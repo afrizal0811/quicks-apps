@@ -1,5 +1,6 @@
 import { Flex } from 'antd'
 import React, { useState } from 'react'
+import { colors } from '../../constants/colors'
 import { StyledCheckbox, StyledTextArea } from './StyledComponents'
 
 const AntdCheckbox = (props) => {
@@ -19,6 +20,7 @@ const AntdCheckbox = (props) => {
         placeholder='Type Task Title'
         width='400px'
         disabled={isClicked}
+        color={colors.white}
       />
     </Flex>
   )

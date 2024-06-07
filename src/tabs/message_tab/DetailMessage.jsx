@@ -23,6 +23,8 @@ const DetailMessage = (props) => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [value, setValue] = useState('')
 
+  const isEmptyMessage = myMessage.length === 0
+
   const handleSend = () => {
     if (value) {
       setMyMessage((prev) => [...prev, value])
@@ -171,7 +173,7 @@ const DetailMessage = (props) => {
             bubbleColor={colors.lavender}
           />
         ))}
-        {!isGroup && renderSupportNotif}
+        {!isGroup && !isEmptyMessage && renderSupportNotif}
       </StyledChatContainer>
       <Flex gap={10}>
         <AntdInput

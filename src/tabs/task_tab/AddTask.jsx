@@ -9,6 +9,7 @@ import AntdTextArea from '../../components/text_area/AntdTextArea'
 import AntdTypography from '../../components/typography/AntdTypography'
 import { StyledDiv, StyledInputContainer, StyledLink } from './StyledComponents'
 import { daysLeft, deleteItem } from './help'
+
 const AddTask = (props) => {
   const { id } = props
   const [isCollapsed, setIsCollapsed] = useState(true)
