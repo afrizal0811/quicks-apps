@@ -15,8 +15,8 @@ import { imagePaths } from '../../constants/imagePaths'
 
 const AddTask = (props) => {
   const { id } = props
-  const [isCollapsed, setIsCollapsed] = useState(true)
-  const [isChecked, setIsChecked] = useState(false)
+  const [isCollapsed, setIsCollapsed] = useState(true) // collapsing task
+  const [isChecked, setIsChecked] = useState(false) // finishing task
   const [date, setDate] = useState('')
 
   const renderCollapseIcon = isCollapsed ? <UpOutlined /> : <DownOutlined />

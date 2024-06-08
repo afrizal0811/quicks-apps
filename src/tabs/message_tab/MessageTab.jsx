@@ -8,10 +8,10 @@ import ListMessage from './ListMessage'
 import { StyledContainer, StyledContent } from './StyledComponents'
 
 const MessageTab = () => {
-  const [data, setData] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
-  const [isSelected, setIsSelected] = useState(false)
-  const [menu, setMenu] = useState({})
+  const [data, setData] = useState([]) // store data from api
+  const [isLoading, setIsLoading] = useState(true) // loading animation
+  const [isSelected, setIsSelected] = useState(false) // select message
+  const [selectedData, setSelectedData] = useState({}) // selected message data
 
   useEffect(() => {
     const fetchData = async () => {
@@ -42,7 +42,7 @@ const MessageTab = () => {
           data={data}
           index={key}
           setIsSelected={setIsSelected}
-          setMenu={setMenu}
+          setSelectedData={setSelectedData}
         />
       ))}
     </div>
@@ -51,14 +51,21 @@ const MessageTab = () => {
   const renderDetails = (
     <DetailMessage
       data={newData}
-      menu={menu}
+      selectedData={selectedData}
       setIsSelected={setIsSelected}
     />
   )
 
   const renderSection = isSelected ? renderDetails : renderLists
 
-  const renderContent = isLoading ? <AntdSpin size='large' text='Loading Chats...'/> : renderSection
+  const renderContent = isLoading ? (
+    <AntdSpin
+      size='large'
+      text='Loading Chats...'
+    />
+  ) : (
+    renderSection
+  )
   return (
     <StyledContainer isSelected={isSelected}>
       <StyledContent

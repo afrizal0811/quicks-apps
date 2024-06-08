@@ -19,19 +19,17 @@ import {
 import { avatarGroupData } from './help'
 
 const ListMessage = (props) => {
-  const { data, index, setIsSelected, setMenu } = props
+  const { data, index, setIsSelected, setSelectedData } = props
 
-  //manually add support chat
-  const chatName = index === 4 ? 'FisaVast Support' : 'Chat - ' + index
-  const isGroup = index < 4
+  const chatName = index === 4 ? 'FisaVast Support' : 'Chat - ' + index  //manually add support chat
+  const isGroup = index < 4 //test spesial occasion (ex: group icon, new chat notif)
 
   const handleSelected = () => {
     const newItems = {
       chatName: chatName,
       isGroup: isGroup,
-      index: index,
     }
-    setMenu(newItems)
+    setSelectedData(newItems)
     setIsSelected(true)
   }
   const userIcon = (

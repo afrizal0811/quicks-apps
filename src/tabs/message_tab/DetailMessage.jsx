@@ -20,13 +20,13 @@ import {
 import { getDate } from './help'
 
 const DetailMessage = (props) => {
-  const { data, menu, setIsSelected } = props
-  const { chatName, isGroup } = menu
-  const [myMessage, setMyMessage] = useState([])  //my chat
+  const { data, selectedData, setIsSelected } = props
+  const { chatName, isGroup } = selectedData
+  const [myMessage, setMyMessage] = useState([])  // store my chat
   const [isScrolled, setIsScrolled] = useState(false) // trigger when scroll
   const [value, setValue] = useState('') // value inside input
-  const [replayData, setReplayData] = useState({}) // 
-  const [allReply, setAllReply] = useState([]) //rep
+  const [replayData, setReplayData] = useState({}) // reply data at that moment
+  const [allReply, setAllReply] = useState([]) // store reply data
 
   const isMessageEmpty = isArrayEmpty(myMessage)
   const isReplyEmpty = isObjectEmpty(replayData)

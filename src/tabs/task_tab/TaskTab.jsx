@@ -10,7 +10,7 @@ import {
 import { items } from './help'
 
 const TaskTab = () => {
-  const [tasks, setTasks] = useState([])
+  const [tasks, setTasks] = useState([]) // store task data
 
   const handleClick = () => {
     setTasks((prev) => [...prev, Date.now()])
