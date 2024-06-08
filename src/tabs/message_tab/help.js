@@ -45,7 +45,7 @@ export const avatarGroupData = [
   },
 ]
 
-export const chatItems = [
+export const myChatItems = [
   {
     key: '1',
     label: 'Edit',
@@ -53,5 +53,16 @@ export const chatItems = [
   {
     key: '2',
     label: 'Delete',
+  },
+]
+
+export const otherChatItems = [
+  {
+    key: '1',
+    label: 'Share',
+  },
+  {
+    key: '2',
+    label: 'Reply',
   },
 ]

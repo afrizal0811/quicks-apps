@@ -6,7 +6,7 @@ import AntdDivider from '../../components/divider/AntdDivider'
 import AntdInput from '../../components/input/AntdInput'
 import AntdSpin from '../../components/spin/AntdSpin'
 import { colors } from '../../constants/colors'
-import { isArrayEmpty } from '../../utilities/isEmpty'
+import { isArrayEmpty, isObjectEmpty } from '../../utilities/isEmpty'
 import BubbleMessage from './BubbleMessage'
 import {
   StyledChatContainer,
@@ -14,28 +14,41 @@ import {
   StyledLink,
   StyledName,
   StyledNotif,
+  StyledReply,
+  StyledReplyPreview,
 } from './StyledComponents'
 import { getDate } from './help'
 
 const DetailMessage = (props) => {
   const { data, menu, setIsSelected } = props
   const { chatName, isGroup } = menu
-  const [myMessage, setMyMessage] = useState([])
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [value, setValue] = useState('')
+  const [myMessage, setMyMessage] = useState([])  //my chat
+  const [isScrolled, setIsScrolled] = useState(false) // trigger when scroll
+  const [value, setValue] = useState('') // value inside input
+  const [replayData, setReplayData] = useState({}) // 
+  const [allReply, setAllReply] = useState([]) //rep
 
-  const isEmptyMessage = isArrayEmpty(myMessage)
+  const isMessageEmpty = isArrayEmpty(myMessage)
+  const isReplyEmpty = isObjectEmpty(replayData)
 
   const handleSend = () => {
     if (value) {
       setMyMessage((prev) => [...prev, value])
+      setAllReply((prev) => [...prev, replayData.text])
       setValue('')
+      handleDeleteReply()
     }
   }
 
   const handleBack = () => {
+    handleDeleteReply()
     setIsSelected(false)
     setMyMessage([])
+    setAllReply([])
+  }
+
+  const handleDeleteReply = () => {
+    setReplayData({})
   }
 
   const backIcon = (children) => (
@@ -79,7 +92,7 @@ const DetailMessage = (props) => {
     </div>
   )
 
-  const renderNewChatDivider = isGroup && (
+  const renderNewChatDivider = (
     <AntdDivider
       title='New Message'
       color={colors.fireOpal}
@@ -93,7 +106,7 @@ const DetailMessage = (props) => {
     />
   )
 
-  const renderNewChatNotif = isGroup && !isScrolled && (
+  const renderNewChatNotif = (
     <Flex
       justify='center'
       align='center'
@@ -110,11 +123,29 @@ const DetailMessage = (props) => {
   const renderSupportNotif = (
     <StyledNotif
       gap={10}
+      isSupport={true}
       textColor={colors.darkLiver}
     >
       <AntdSpin size='small' />
       Please wait while we connect you with one of our team ...
     </StyledNotif>
+  )
+
+  const renderReplyPreview = (
+    <StyledReplyPreview>
+      <Flex justify='space-between'>
+        <StyledReply>
+          <h5>Replay to {replayData.name}</h5>
+          <p>{replayData.text}</p>
+        </StyledReply>
+        <StyledLink
+          href={() => false}
+          onClick={handleDeleteReply}
+        >
+          <CloseOutlined />
+        </StyledLink>
+      </Flex>
+    </StyledReplyPreview>
   )
 
   const multiChats = (
@@ -126,11 +157,13 @@ const DetailMessage = (props) => {
         data={data[0]}
         textColor={colors.indianYellow}
         bubbleColor={colors.papayaWhip}
+        setReplayData={setReplayData}
       />
       <BubbleMessage
         data={data[1]}
         textColor={colors.mint}
         bubbleColor={colors.water}
+        setReplayData={setReplayData}
       />
     </Flex>
   )
@@ -139,9 +172,9 @@ const DetailMessage = (props) => {
     <div>
       {multiChats}
       {renderDateDivider}
-      {renderNewChatNotif}
+      {isGroup && !isScrolled && renderNewChatNotif}
       {multiChats}
-      {renderNewChatDivider}
+      {isGroup && renderNewChatDivider}
       {multiChats}
     </div>
   )
@@ -151,6 +184,7 @@ const DetailMessage = (props) => {
       data={data[0]}
       textColor={colors.bleuDeFrance}
       bubbleColor={colors.cultured}
+      setReplayData={setReplayData}
     />
   )
 
@@ -166,15 +200,18 @@ const DetailMessage = (props) => {
         vertical
       >
         {renderChat}
-        {myMessage.map((message) => (
+        {myMessage.map((message, index) => (
           <BubbleMessage
-            isReverse={true}
-            message={message}
-            textColor={colors.lavenderIndigo}
+            allReply={allReply}
             bubbleColor={colors.lavender}
+            index={index}
+            isReverse={true}
+            myMessage={message}
+            textColor={colors.lavenderIndigo}
           />
         ))}
-        {!isGroup && !isEmptyMessage && renderSupportNotif}
+        {!isGroup && !isMessageEmpty && renderSupportNotif}
+        {!isReplyEmpty && renderReplyPreview}
       </StyledChatContainer>
       <Flex gap={10}>
         <AntdInput

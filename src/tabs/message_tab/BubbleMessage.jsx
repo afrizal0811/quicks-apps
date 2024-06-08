@@ -5,13 +5,35 @@ import AntdDropdown from '../../components/dropdown/AntdDropdown'
 import {
   StyledBubble,
   StyledBubbleWrapper,
+  StyledCard,
   StyledInfo,
   StyledName,
 } from './StyledComponents'
-import { chatItems, getTime } from './help'
+import { getTime, myChatItems, otherChatItems } from './help'
 
 const BubbleMessage = (props) => {
-  const { data, textColor, bubbleColor, isReverse, message } = props
+  const {
+    bubbleColor,
+    data,
+    index,
+    isReverse,
+    myMessage,
+    setReplayData,
+    textColor,
+    allReply,
+  } = props
+
+  const spesificReply = allReply && allReply[index]
+
+  const handleOtherOption = (e) => {
+    const isReply = e.key === '2'
+    if (isReply) {
+      setReplayData({
+        name: data.name,
+        text: data.text,
+      })
+    }
+  }
 
   const renderName = (
     <StyledBubbleWrapper isReverse={isReverse}>
@@ -22,6 +44,8 @@ const BubbleMessage = (props) => {
       />
     </StyledBubbleWrapper>
   )
+
+  const renderRepliedText = <StyledCard>{spesificReply}</StyledCard>
 
   const renderChat = (
     <StyledBubbleWrapper
@@ -34,7 +58,7 @@ const BubbleMessage = (props) => {
         vertical
       >
         <StyledInfo
-          text={message ? message : data.text}
+          text={myMessage ? myMessage : data.text}
           isDetail={true}
         />
         <StyledInfo
@@ -45,7 +69,8 @@ const BubbleMessage = (props) => {
       <div>
         <AntdDropdown
           icon={<MoreOutlined rotate={90} />}
-          items={chatItems}
+          items={isReverse ? myChatItems : otherChatItems}
+          onClick={handleOtherOption}
           placement={isReverse ? 'bottomRight' : 'bottomLeft'}
           trigger='click'
         />
@@ -60,6 +85,7 @@ const BubbleMessage = (props) => {
         vertical
       >
         {renderName}
+        {spesificReply && myMessage && renderRepliedText}
         {renderChat}
       </Flex>
     </StyledBubbleWrapper>
