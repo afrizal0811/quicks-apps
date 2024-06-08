@@ -19,7 +19,6 @@ const Menu = (props) => {
   const [selectedMenu, setSelectedMenu] = useState('')
 
   const isNoOpening = isObjectEmpty(isOpen)
-  const isSelectedOpen = isOpen[`${selectedMenu}`]
 
   const handleClickBack = () => {
     setIsClicked(false)
@@ -40,6 +39,7 @@ const Menu = (props) => {
   const renderMenus = menuData.map((element) => {
     const { colorActive, colorIdle, imageActive, imageIdle, name } = element
 
+    const isSelectedOpen = isOpen[`${name}`]
     const selectedColor = isSelectedOpen ? colorActive : colorIdle
     const renderContent = (
       <Image
