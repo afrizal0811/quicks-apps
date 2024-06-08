@@ -1,17 +1,18 @@
-import { DownOutlined, MoreOutlined, UpOutlined } from '@ant-design/icons'
+import { DownOutlined, MoreOutlined } from '@ant-design/icons'
 import { Flex } from 'antd'
+import { motion } from 'framer-motion'
 import React, { useState } from 'react'
 import AntdCheckbox from '../../components/checkbox/AntdCheckbox'
 import AntdDatePicker from '../../components/date_picker/AntdDatePicker'
 import AntdDivider from '../../components/divider/AntdDivider'
 import AntdDropdown from '../../components/dropdown/AntdDropdown'
+import Image from '../../components/image/Image'
 import AntdSelectTag from '../../components/select_tag/AntdSelectTag'
 import AntdTextArea from '../../components/text_area/AntdTextArea'
 import AntdTypography from '../../components/typography/AntdTypography'
+import { imagePaths } from '../../constants/imagePaths'
 import { StyledDiv, StyledInputContainer, StyledLink } from './StyledComponents'
 import { daysLeft, deleteItem, stickerOptions } from './help'
-import Image from '../../components/image/Image'
-import { imagePaths } from '../../constants/imagePaths'
 
 const AddTask = (props) => {
   const { id } = props
@@ -19,7 +20,6 @@ const AddTask = (props) => {
   const [isChecked, setIsChecked] = useState(false) // finishing task
   const [date, setDate] = useState('')
 
-  const renderCollapseIcon = isCollapsed ? <UpOutlined /> : <DownOutlined />
   const days = daysLeft(date) && !isChecked ? `${daysLeft(date)} Days Left` : ''
 
   const textAreaIcon = (
@@ -47,12 +47,19 @@ const AddTask = (props) => {
             text={date}
             type='secondary'
           />
-          <StyledLink
-            href={() => false}
-            onClick={() => setIsCollapsed((prev) => !prev)}
+          <motion.div
+            animate={{
+              rotate: isCollapsed ? 0 : 180,
+            }}
+            transition={{ duration: 0.2 }}
           >
-            {renderCollapseIcon}
-          </StyledLink>
+            <StyledLink
+              href={() => false}
+              onClick={() => setIsCollapsed((prev) => !prev)}
+            >
+              <DownOutlined />
+            </StyledLink>
+          </motion.div>
           <AntdDropdown
             icon={<MoreOutlined rotate={90} />}
             items={deleteItem}
@@ -61,27 +68,45 @@ const AddTask = (props) => {
           />
         </Flex>
       </Flex>
-      <StyledInputContainer
-        gap={10}
-        isCollapsed={isCollapsed}
-        vertical
+      <motion.div
+        initial={{
+          height: 0,
+          opacity: 0,
+          overflow: 'hidden',
+        }}
+        animate={{
+          height: isCollapsed ? '0' : 'auto',
+          opacity: isCollapsed ? 0 : 1,
+          overflow: isCollapsed ? 'hidden' : 'visible',
+          y: isCollapsed ? -10 : 0,
+        }}
+        transition={{ duration: 0.2 }}
       >
-        <AntdDatePicker
-          disabled={isChecked}
-          setDate={setDate}
-        />
-        <AntdTextArea
-          disabled={isChecked}
-          icon={textAreaIcon}
-          id={id}
-          placeholder='No Description'
-          width='645px'
-        />
-        <AntdSelectTag
-          disabled={isChecked}
-          options={stickerOptions}
-        />
-      </StyledInputContainer>
+        <StyledInputContainer
+          gap={10}
+          vertical
+          style={{
+            position: 'relative',
+            top: isCollapsed ? '0' : '-10px',
+          }}
+        >
+          <AntdDatePicker
+            disabled={isChecked}
+            setDate={setDate}
+          />
+          <AntdTextArea
+            disabled={isChecked}
+            icon={textAreaIcon}
+            id={id}
+            placeholder='No Description'
+            width='645px'
+          />
+          <AntdSelectTag
+            disabled={isChecked}
+            options={stickerOptions}
+          />
+        </StyledInputContainer>
+      </motion.div>
       <AntdDivider />
     </StyledDiv>
   )

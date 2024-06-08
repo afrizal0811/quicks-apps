@@ -12,7 +12,7 @@ export const StyledContainer = styled.div`
   ${({ isSelected }) =>
     !isSelected &&
     `
-    overflow-y: auto;
+    overflow-y: scroll;
   `}
 `
 
@@ -40,7 +40,7 @@ export const StyledLink = styled.a`
 
 export const StyledChatContainer = styled(Flex)`
   width: 670px;
-  overflow-y: auto;
+  overflow-y: scroll;
   margin-bottom: 10px;
   height: 370px;
   ${({ isGroup }) =>
