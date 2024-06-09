@@ -7,7 +7,8 @@ import Menu from './Menu'
 import { StyledContainer, StyledMainButton } from './StyledComponents'
 
 const MenuButton = () => {
-  const [isClicked, setIsClicked] = useState(false)
+  const [isMainClicked, setIsMainClicked] = useState(false)
+  const [isChildClicked, setIsChildClicked] = useState(false)
 
   const quicksIcon = (
     <Image
@@ -24,17 +25,19 @@ const MenuButton = () => {
       align='flex-end'
     >
       <Menu
-        isClicked={isClicked}
-        setIsClicked={setIsClicked}
+        isChildClicked={isChildClicked}
+        isMainClicked={isMainClicked}
+        setIsChildClicked={setIsChildClicked}
+        setIsMainClicked={setIsMainClicked}
       />
       <motion.div
-        animate={{ scale: !isClicked ? 1 : 0 }}
+        animate={{ scale: !isMainClicked || !isChildClicked ? 1 : 0 }}
         transition={{ duration: 0.1 }}
       >
         <StyledMainButton
           color={colors.bleuDeFrance}
           content={quicksIcon}
-          onClick={() => setIsClicked(true)}
+          onClick={() => setIsMainClicked(true)}
           shape='circle'
         />
       </motion.div>

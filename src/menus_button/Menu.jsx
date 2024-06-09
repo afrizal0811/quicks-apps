@@ -14,7 +14,9 @@ import {
 import { menuData } from './help'
 
 const Menu = (props) => {
-  const { isClicked, setIsClicked } = props
+  const { isChildClicked, isMainClicked, setIsChildClicked, setIsMainClicked } =
+  props
+
   const [isOpen, setIsOpen] = useState({})
   const [selectedMenu, setSelectedMenu] = useState('')
 
@@ -24,10 +26,12 @@ const Menu = (props) => {
   const newMenuData = isNoOpening ? menuData : selectedMenuData
 
   const handleClickBack = () => {
-    setIsClicked(false)
+    setIsMainClicked(false)
+    setIsChildClicked(false)
     setIsOpen({})
   }
   const handleClickMenu = (name) => {
+    setIsChildClicked(true)
     setSelectedMenu(name)
     setIsOpen({ [name]: true })
   }
@@ -74,7 +78,12 @@ const Menu = (props) => {
   })
 
   return (
-    <motion.div animate={{ x: isClicked ? 85 : 350, scale: isClicked ? 1 : 0 }}>
+    <motion.div
+      animate={{
+        x: isChildClicked ? 85 : isMainClicked ? 0 : 350,
+        scale: isMainClicked ? 1 : 0,
+      }}
+    >
       <Flex
         align='flex-end'
         gap={10}
