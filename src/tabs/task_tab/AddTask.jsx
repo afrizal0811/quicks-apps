@@ -12,7 +12,7 @@ import AntdTextArea from '../../components/text_area/AntdTextArea'
 import AntdTypography from '../../components/typography/AntdTypography'
 import { imagePaths } from '../../constants/imagePaths'
 import { StyledDiv, StyledInputContainer, StyledLink } from './StyledComponents'
-import { daysLeft, deleteItem, stickerOptions } from './help'
+import { daysLeft, deleteItem, stickerOptions, collapseVariants } from './help'
 
 const AddTask = (props) => {
   const { id } = props
@@ -48,10 +48,9 @@ const AddTask = (props) => {
             type='secondary'
           />
           <motion.div
-            animate={{
-              rotate: isCollapsed ? 0 : 180,
-            }}
-            transition={{ duration: 0.2 }}
+            variants={collapseVariants}
+            initial='closedIcon'
+            animate={isCollapsed ? 'closedIcon' : 'openIcon'}
           >
             <StyledLink
               href={() => false}
@@ -69,18 +68,9 @@ const AddTask = (props) => {
         </Flex>
       </Flex>
       <motion.div
-        initial={{
-          height: 0,
-          opacity: 0,
-          overflow: 'hidden',
-        }}
-        animate={{
-          height: isCollapsed ? '0' : 'auto',
-          opacity: isCollapsed ? 0 : 1,
-          overflow: isCollapsed ? 'hidden' : 'visible',
-          y: isCollapsed ? -10 : 0,
-        }}
-        transition={{ duration: 0.2 }}
+        variants={collapseVariants}
+        initial='closed'
+        animate={isCollapsed ? 'closed' : 'open'}
       >
         <StyledInputContainer
           gap={10}
