@@ -1,6 +1,15 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Technical Test - Simpul Tech: Frontend Skill Challenge
+
+Afrizal Maulana Muhammad
+
+### `Information`
+
+* ReactJs Version : 18.3.1
+* Node.js Version : 18.17.1
+* Packages Manager : NPM
+* Website Hosting : https://quicks-apps.vercel.app/ (Vercel)
 
 ## Available Scripts
 
