@@ -7,7 +7,7 @@ import {
   StyledDropdown,
   StyledHeader,
 } from './StyledComponents'
-import { items } from './help'
+import { myTaskItems } from './help'
 
 const TaskTab = () => {
   const [tasks, setTasks] = useState([]) // store task data
@@ -22,7 +22,7 @@ const TaskTab = () => {
         <StyledDropdown
           icon={<DownOutlined />}
           isButton={true}
-          items={items}
+          items={myTaskItems}
           placement='bottom'
           text='My Tasks'
           trigger='click'

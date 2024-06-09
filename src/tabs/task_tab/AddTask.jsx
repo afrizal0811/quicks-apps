@@ -17,10 +17,9 @@ import { collapseVariants, daysLeft, deleteItem, stickerOptions } from './help'
 const AddTask = (props) => {
   const { id } = props
   const [isCollapsed, setIsCollapsed] = useState(true) // collapsing task
-  const [isChecked, setIsChecked] = useState(false) // finishing task
   const [date, setDate] = useState('')
 
-  const days = daysLeft(date) && !isChecked ? `${daysLeft(date)} Days Left` : ''
+  const days = daysLeft(date) ? `${daysLeft(date)} Days Left` : ''
 
   const textAreaIcon = (
     <Image
@@ -37,7 +36,7 @@ const AddTask = (props) => {
         justify='space-between'
         align='center'
       >
-        <AntdCheckbox setIsChecked={setIsChecked} />
+        <AntdCheckbox />
         <Flex gap={15}>
           <AntdTypography
             text={days}
@@ -81,18 +80,15 @@ const AddTask = (props) => {
           }}
         >
           <AntdDatePicker
-            disabled={isChecked}
             setDate={setDate}
           />
           <AntdTextArea
-            disabled={isChecked}
             icon={textAreaIcon}
             id={id}
             placeholder='No Description'
             width='645px'
           />
           <AntdSelectTag
-            disabled={isChecked}
             options={stickerOptions}
           />
         </StyledInputContainer>

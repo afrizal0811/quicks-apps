@@ -1,5 +1,6 @@
 import { colors } from '../../constants/colors'
-export const items = [
+
+export const myTaskItems = [
   {
     key: '1',
     label: 'Personal Errands',
