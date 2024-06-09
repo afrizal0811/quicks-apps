@@ -7,7 +7,7 @@ import { StyledIcon } from './StyledComponents'
 const AntdSelectTag = (props) => {
   const { options, disabled } = props
   const [isSelected, setIsSelected] = useState(false)
-
+  const { Option } = Select
   const handleChange = (e) => {
     const isValueEmpty = isArrayEmpty(e)
     if (!isValueEmpty) setIsSelected(true)
@@ -58,12 +58,21 @@ const AntdSelectTag = (props) => {
         disabled={disabled}
         mode='multiple'
         onChange={(e) => handleChange(e)}
-        options={options}
         style={{
           width: '100%',
         }}
         tagRender={tagRender}
-      />
+      >
+        {options.map((data) => (
+          <Option
+            key={data.value}
+            value={data.value}
+            style={{ backgroundColor: data.value }}
+          >
+            {data.label}
+          </Option>
+        ))}
+      </Select>
     </Flex>
   )
 }
