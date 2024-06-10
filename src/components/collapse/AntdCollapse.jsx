@@ -3,15 +3,16 @@ import React from 'react'
 import { StyledCollapse } from './StyledComponents'
 
 const AntdCollapse = (props) => {
-  const { items, className } = props
+  const { items, className, activeKey } = props
 
   return (
     <StyledCollapse
       className={className}
+      defaultActiveKey={[`${activeKey}`]}
       collapsible='icon'
       expandIconPosition='end'
       ghost
-      items={[items]}
+      items={items}
       expandIcon={({ isActive }) => (
         <DownOutlined rotate={isActive ? 180 : 0} />
       )}

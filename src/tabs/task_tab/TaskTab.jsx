@@ -1,10 +1,6 @@
-import { DownOutlined, MoreOutlined } from '@ant-design/icons'
-import { Flex } from 'antd'
+import { DownOutlined } from '@ant-design/icons'
 import React, { useEffect, useState } from 'react'
 import AntdButton from '../../components/button/AntdButton'
-import AntdCollapse from '../../components/collapse/AntdCollapse'
-import AntdDivider from '../../components/divider/AntdDivider'
-import AntdDropdown from '../../components/dropdown/AntdDropdown'
 import AntdSpin from '../../components/spin/AntdSpin'
 import AddTask from './AddTask'
 import {
@@ -13,10 +9,9 @@ import {
   StyledDropdown,
   StyledHeader,
 } from './StyledComponents'
-import { deleteItem, myTaskItems } from './help'
+import { myTaskItems } from './help'
 
 const TaskTab = () => {
-  const { children, label } = AddTask()
   const [tasks, setTasks] = useState([]) // store task data
   const [isLoading, setIsLoading] = useState(true) // loading animation
 
@@ -29,9 +24,7 @@ const TaskTab = () => {
 
   const handleAdd = () => {
     const newData = {
-      children: children,
-      key: tasks.length,
-      label: label,
+      id: tasks.length,
     }
     setTasks((prev) => [...prev, newData])
   }
@@ -61,24 +54,10 @@ const TaskTab = () => {
         />
       </StyledHeader>
       {tasks.map((data) => (
-        <div>
-          <Flex
-            align='flex-start'
-            gap={10}
-            justify='space-between'
-          >
-            <AntdCollapse items={data} />
-            <div>
-              <AntdDropdown
-                icon={<MoreOutlined rotate={90} />}
-                items={deleteItem}
-                placement='bottomRight'
-                trigger='click'
-              />
-            </div>
-          </Flex>
-          <AntdDivider />
-        </div>
+        <AddTask
+          key={data.id}
+          index={data.id}
+        />
       ))}
     </div>
   )
