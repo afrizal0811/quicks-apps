@@ -1,20 +1,15 @@
-import { MoreOutlined } from '@ant-design/icons'
 import { Flex } from 'antd'
 import React, { useState } from 'react'
 import AntdCheckbox from '../../components/checkbox/AntdCheckbox'
-import AntdCollapse from '../../components/collapse/AntdCollapse'
 import AntdDatePicker from '../../components/date_picker/AntdDatePicker'
-import AntdDivider from '../../components/divider/AntdDivider'
-import AntdDropdown from '../../components/dropdown/AntdDropdown'
 import Image from '../../components/image/Image'
 import AntdSelectTag from '../../components/select_tag/AntdSelectTag'
 import AntdTextArea from '../../components/text_area/AntdTextArea'
 import AntdTypography from '../../components/typography/AntdTypography'
 import { imagePaths } from '../../constants/imagePaths'
 import { StyledInputContainer } from './StyledComponents'
-import { daysLeft, deleteItem, stickerOptions } from './help'
-const AddTask = (props) => {
-  const { id } = props
+import { daysLeft, stickerOptions } from './help'
+const AddTask = () => {
   const [date, setDate] = useState('')
   const [isCompleted, setIsCompleted] = useState(false)
   const days =
@@ -34,7 +29,7 @@ const AddTask = (props) => {
       justify='space-between'
       align='center'
     >
-      <AntdCheckbox setIsCompleted={setIsCompleted}/>
+      <AntdCheckbox setIsCompleted={setIsCompleted} />
       <Flex gap={15}>
         <AntdTypography
           text={days}
@@ -56,7 +51,6 @@ const AddTask = (props) => {
       <AntdDatePicker setDate={setDate} />
       <AntdTextArea
         icon={textAreaIcon}
-        id={id}
         placeholder='No Description'
         width='645px'
       />
@@ -64,34 +58,10 @@ const AddTask = (props) => {
     </StyledInputContainer>
   )
 
-  const items = [
-    {
-      key: '1',
-      label: label,
-      children: children,
-    },
-  ]
-
-  return (
-    <div>
-      <Flex
-        align='flex-start'
-        gap={10}
-        justify='space-between'
-      >
-        <AntdCollapse items={items} />
-        <div>
-          <AntdDropdown
-            icon={<MoreOutlined rotate={90} />}
-            items={deleteItem}
-            placement='bottomRight'
-            trigger='click'
-          />
-        </div>
-      </Flex>
-      <AntdDivider />
-    </div>
-  )
+  return {
+    children,
+    label,
+  }
 }
 
 export default AddTask

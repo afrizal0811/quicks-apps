@@ -11,8 +11,10 @@ const AntdCollapse = (props) => {
       collapsible='icon'
       expandIconPosition='end'
       ghost
-      items={items}
-      expandIcon={({ isActive }) => <DownOutlined rotate={isActive ? 180 : 0} />}
+      items={[items]}
+      expandIcon={({ isActive }) => (
+        <DownOutlined rotate={isActive ? 180 : 0} />
+      )}
     />
   )
 }

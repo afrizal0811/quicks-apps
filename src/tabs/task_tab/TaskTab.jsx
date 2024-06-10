@@ -1,17 +1,22 @@
-import { DownOutlined } from '@ant-design/icons'
+import { DownOutlined, MoreOutlined } from '@ant-design/icons'
+import { Flex } from 'antd'
 import React, { useEffect, useState } from 'react'
 import AntdButton from '../../components/button/AntdButton'
+import AntdCollapse from '../../components/collapse/AntdCollapse'
+import AntdDivider from '../../components/divider/AntdDivider'
+import AntdDropdown from '../../components/dropdown/AntdDropdown'
 import AntdSpin from '../../components/spin/AntdSpin'
 import AddTask from './AddTask'
 import {
   StyledContainer,
+  StyledContent,
   StyledDropdown,
   StyledHeader,
-  StyledContent,
 } from './StyledComponents'
-import { myTaskItems } from './help'
+import { deleteItem, myTaskItems } from './help'
 
 const TaskTab = () => {
+  const { children, label } = AddTask()
   const [tasks, setTasks] = useState([]) // store task data
   const [isLoading, setIsLoading] = useState(true) // loading animation
 
@@ -22,8 +27,13 @@ const TaskTab = () => {
     }, 500)
   }, [])
 
-  const handleClick = () => {
-    setTasks((prev) => [...prev, Date.now()])
+  const handleAdd = () => {
+    const newData = {
+      children: children,
+      key: tasks.length,
+      label: label,
+    }
+    setTasks((prev) => [...prev, newData])
   }
 
   const renderLoading = (
@@ -47,11 +57,28 @@ const TaskTab = () => {
         <AntdButton
           type='primary'
           content='New Task'
-          onClick={handleClick}
+          onClick={handleAdd}
         />
       </StyledHeader>
       {tasks.map((data) => (
-        <AddTask id={data} />
+        <div>
+          <Flex
+            align='flex-start'
+            gap={10}
+            justify='space-between'
+          >
+            <AntdCollapse items={data} />
+            <div>
+              <AntdDropdown
+                icon={<MoreOutlined rotate={90} />}
+                items={deleteItem}
+                placement='bottomRight'
+                trigger='click'
+              />
+            </div>
+          </Flex>
+          <AntdDivider />
+        </div>
       ))}
     </div>
   )
