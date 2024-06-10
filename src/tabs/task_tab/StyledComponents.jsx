@@ -1,7 +1,6 @@
 import { Flex } from 'antd'
 import styled from 'styled-components'
 import AntdDropdown from '../../components/dropdown/AntdDropdown'
-import { colors } from '../../constants/colors'
 
 export const StyledContainer = styled.div`
   padding: 24px 32px;
@@ -10,23 +9,12 @@ export const StyledContainer = styled.div`
   overflow-y: scroll;
 `
 
-export const StyledLink = styled.a`
-  color: ${colors.darkLiver};
-  &:hover {
-    color: ${colors.darkLiver};
-  }
-`
-
-export const StyledDiv = styled.div`
-  width: 100%;
-`
-
 export const StyledHeader = styled(Flex)`
   padding-bottom: 22px;
 `
 
 export const StyledInputContainer = styled(Flex)`
-  padding: 22px 20px 0;
+  padding: 0 20px;
 `
 export const StyledContent = styled(Flex)`
   height: 100%;

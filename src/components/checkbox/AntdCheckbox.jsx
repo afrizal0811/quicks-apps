@@ -3,11 +3,13 @@ import React, { useState } from 'react'
 import { colors } from '../../constants/colors'
 import { StyledCheckbox, StyledTextArea } from './StyledComponents'
 
-const AntdCheckbox = () => {
+const AntdCheckbox = (props) => {
+  const { setIsCompleted } = props
   const [isClicked, setIsCliked] = useState(false)
 
   const handleChange = (e) => {
     setIsCliked(e.target.checked)
+    setIsCompleted(e.target.checked)
   }
 
   return (
@@ -16,7 +18,7 @@ const AntdCheckbox = () => {
       <StyledTextArea
         isChecked={isClicked}
         placeholder='Type Task Title'
-        width='400px'
+        width='370px'
         disabled={isClicked}
         color={colors.white}
       />

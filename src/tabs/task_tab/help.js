@@ -53,31 +53,6 @@ export const stickerOptions = [
   },
 ]
 
-export const collapseVariants = {
-  open: {
-    height: 'auto',
-    opacity: 1,
-    overflow: 'visible',
-    y: 0,
-    transition: { duration: 0.2, ease: 'easeInOut' },
-  },
-  closed: {
-    height: 0,
-    opacity: 0,
-    overflow: 'hidden',
-    y: -10,
-    transition: { duration: 0.2, ease: 'easeInOut' },
-  },
-  openIcon: {
-    rotate: 0,
-    transition: { duration: 0.2, ease: 'easeInOut' },
-  },
-  closedIcon: {
-    rotate: 180,
-    transition: { duration: 0.2, ease: 'easeInOut' },
-  },
-}
-
 export const daysLeft = (date) => {
   function convertDate(dateString) {
     let parts = dateString.split('/')
